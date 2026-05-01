@@ -1,0 +1,367 @@
+{
+  "sample_id": "5th.Wheel",
+  "type": "airborne_roadway",
+  "main_event": "tow_pair_tracked_with_passing_traffic_and_foreground_tree_occlusion",
+  "event_description": "A pickup-trailer pair is tracked across EO and IR while nearby passing cars, roadside poles, and foreground trees create plausible identity swaps.",
+  "scenario_type": "EO+IR-required",
+  "notes": {
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, or rationales to model prompts.",
+    "design_revision_note": "Video-reasoning v13: replace broad identity conclusions with specific temporal order, screen-side, occlusion, and EO/IR contrast-transfer judgments.",
+    "acceptance_gates": [
+      "Run prompt leakage audit after request export.",
+      "Do not export answer, option_roles, rationale, main_event, event_description, or time_reference metadata to prompts.",
+      "Use nearby true-looking alternatives: adjacent vehicles, nearby road edges, neighboring pavement, and modality contrast reversals.",
+      "Keep wording natural and answerable by a human viewer from the full video."
+    ]
+  },
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "When the EO view first zooms in on the road segment containing the tow pair and the silver car, what lane arrangement is visible?",
+      "options": {
+        "A": "the tow pair is in the upper-right lane, while the silver car is lower-left in the opposite lane",
+        "B": "the tow pair is in the lower-left lane, while the silver car is upper-right in the opposite lane",
+        "C": "the tow pair and the silver car are in the same upper-right lane with little or no separation",
+        "D": "the tow pair is on the road shoulder, while the silver car remains in the adjacent travel lane"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "time_reference_eo": "00:18-00:21",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 2,
+      "capability_level": "L1",
+      "question": "In the later EO close-up where the truck–trailer pair is seen from the side, where is the roadside pole relative to the pair?",
+      "options": {
+        "A": "on the far grass side beside or above the trailer, away from the hitch point",
+        "B": "on the near shoulder beside the truck, not between the truck and trailer",
+        "C": "between the truck and trailer at the hitch point",
+        "D": "beside the rear of the truck, close to but not between the truck and trailer"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "evidence_retrieval"
+      ],
+      "time_reference_eo": "00:40-00:48",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 3,
+      "capability_level": "L1",
+      "question": "In the close side-on IR view of the truck–trailer pair, which thermal contrast pattern is visible?",
+      "options": {
+        "A": "the road edges appear brighter, while the long trailer side looks darker",
+       "B": "the road edges appear darker, while the long trailer side is the brightest region",
+       "C": "the field rows are the brightest features, and the truck–trailer pair is not aligned with the lane",
+        "D": "only two similar warm points are visible, with no elongated side body apparent"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "00:20-00:44",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Across the EO road sequence, in what order do the silver car and the yellow car appear?",
+      "options": {
+        "A": "the silver car appears in the first close road pass, and the yellow car appears later in a wider road view",
+       "B": "the yellow car appears in the first close road pass, and the silver car appears later in a wider road view",
+       "C": "the silver car appears first, and the yellow car appears immediately afterward in the same close road pass",
+       "D": "the yellow car appears first in a wide road view, and the silver car appears later near the tow pair"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_retrieval"
+      ],
+      "time_reference_eo": "00:18-01:16",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "As the IR view widens, which visual change indicates that the truck–trailer pair remains on the road rather than shifting into the field?",
+      "options": {
+        "A": "the large side-on body shrinks into a smaller body still aligned with the road near the trees",
+       "B": "the large side-on body turns into a square patch inside the field rows",
+       "C": "two compact warm spots beside the road become the tracked object instead of the long body",
+        "D": "the road-edge lines replace the vehicle body as the only visible target"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "00:20-01:25",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "In the later EO road view, which dark object is the distractor rather than the tow vehicle?",
+      "options": {
+        "A": "dark car near trailer, separated from hitch",
+        "B": "the dark unit directly coupled to the trailer front",
+        "C": "a dark field patch above the road edge",
+        "D": "the pole shadow crossing the far shoulder"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "01:00-01:25",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "In the later EO road view, which dark object is a separate distractor rather than the towing vehicle attached to the trailer?",
+      "options": {
+        "A": "a dark car near the trailer that is clearly separated from the hitch",
+        "B": "the dark vehicle unit directly coupled to the front of the trailer",
+        "C": "a dark roadside vehicle-like object above the road edge, away from the trailer",
+        "D": "a small dark object on the far shoulder that is not attached to the trailer"
+  },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "00:18-01:16",
+      "time_reference_ir": "00:20-01:25",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "traffic_and_occlusion_order",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which EO-visible detail is unreliable as decisive evidence when matching the target from EO to IR?",
+      "options": {
+        "A": "the color contrast between the white trailer and the black truck paint",
+        "B": "the front-rear coupling between the truck and trailer at the hitch",
+        "C": "the elongated trailer body remaining on the lane",
+        "D": "the target motion staying aligned with the road through the view"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "entity_grounding"
+      ],
+      "time_reference_eo": "00:18-00:48",
+      "time_reference_ir": "00:20-00:44",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "identity_under_occlusion",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "Which temporal detail could lead to a mistaken target swap if it were used without checking the full EO sequence?",
+      "options": {
+        "A": "a separate dark car appears near the trailer after the close pass",
+        "B": "the same trailer-like long body remains aligned with the road across views",
+        "C": "the truck–trailer coupling is visible before the later road view",
+        "D": "the target stays on the same road segment as the view widens"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "00:18-01:25",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "identity_under_occlusion",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "In the close IR side view, where is the compact unit relative to the long trailer-like body?",
+      "options": {
+        "A": "attached to the left end of the long body",
+        "B": "attached to the right end of the long body",
+        "C": "separate above the long body on the field side",
+        "D": "separate below the long body on the near shoulder"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "00:20-00:44",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "identity_under_occlusion",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which EO-to-IR contrast change best matches the trailer?",
+      "options": {
+        "A": "the trailer looks pale in EO, but appears darker than the bright road highlights in IR",
+        "B": "the trailer looks dark in EO, but appears brighter than the road highlights in IR",
+        "C": "the trailer looks pale in EO, and remains the brightest elongated object in IR",
+        "D": "the trailer looks pale in EO, but breaks into only a small compact hot spot in IR"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "thermal_evidence_interpretation"
+      ],
+      "time_reference_eo": "00:18-00:48",
+      "time_reference_ir": "00:20-00:44",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "identity_under_occlusion",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "When foreground trees partially interrupt the road view, which visible cue best preserves the target identity?",
+      "options": {
+        "A": "the elongated road-aligned body, rather than the nearby separate dark car",
+        "B": "the nearby separate dark car, rather than the coupled elongated body",
+        "C": "a dark roadside shadow, rather than either vehicle body",
+        "D": "the field-row texture, rather than the road-aligned object"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "01:10-01:25",
+      "time_reference_ir": "01:17-01:25",
+      "modality_requirement": "EO+IR"
+    }
+  ]
+}

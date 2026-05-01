@@ -1,0 +1,367 @@
+{
+  "sample_id": "Airplane",
+  "type": "airborne_rural_airstrip",
+  "main_event": "aircraft_tracked_on_grass_through_orbit_and_modality_contrast",
+  "event_description": "A stationary aircraft on grass is tracked through EO and IR while camera orbit changes screen-side pavement cues and EO-only paint cues fail to transfer directly to IR.",
+  "scenario_type": "EO+IR-required",
+  "notes": {
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, or rationales to model prompts.",
+    "design_revision_note": "Video-reasoning v13: replace broad identity conclusions with specific temporal order, screen-side, occlusion, and EO/IR contrast-transfer judgments.",
+    "acceptance_gates": [
+      "Run prompt leakage audit after request export.",
+      "Do not export answer, option_roles, rationale, main_event, event_description, or time_reference metadata to prompts.",
+      "Use nearby true-looking alternatives: adjacent vehicles, nearby road edges, neighboring pavement, and modality contrast reversals.",
+      "Keep wording natural and answerable by a human viewer from the full video."
+    ]
+  },
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the first close EO pass, which ground relation places the aircraft?",
+      "options": {
+        "A": "grass strip between a narrow paved strip on the left and a broader paved area on the right",
+        "B": "grass strip between a broader paved area on the left and a narrow paved strip on the right",
+        "C": "pavement strip between grass on both sides, with the aircraft centered on pavement",
+        "D": "tree-side driveway between two grass patches, with the aircraft under the trees"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "entity_grounding",
+        "spatial_reasoning"
+      ],
+      "time_reference_eo": "00:17-00:29",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 2,
+      "capability_level": "L1",
+      "question": "In the close IR pass, where is the bright pavement relative to the aircraft body?",
+      "options": {
+        "A": "upper-right edge, outside aircraft body",
+        "B": "under the aircraft body through the center",
+        "C": "near the lower-left edge with the body on pavement",
+        "D": "hidden by trees before the aircraft body appears"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "00:28-00:52",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 3,
+      "capability_level": "L1",
+      "question": "In the later EO pass after the orbit, which screen-side layout is visible?",
+      "options": {
+        "A": "broad dark pavement on the left; narrow road or driveway on the right",
+        "B": "broad dark pavement on the right; narrow road or driveway on the left",
+        "C": "broad dark pavement under the aircraft; grass only at the top",
+        "D": "tree canopy over the aircraft; no road or pavement beside it"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "scene_grounding"
+      ],
+      "time_reference_eo": "02:02-02:12",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which EO sequence describes the pavement shifting around a grass-side aircraft?",
+      "options": {
+        "A": "right early, upper-right next, left later",
+        "B": "broad pavement left early, lower-left next, right in the later pass",
+        "C": "broad pavement under the aircraft early, then under it again later",
+        "D": "no broad pavement early, then the aircraft enters pavement later"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which IR sequence tracks the aircraft through the scale change?",
+      "options": {
+        "A": "large grass body, then smaller grass body between paved areas",
+        "B": "large body on pavement with grass at the edge, then smaller body centered on pavement",
+        "C": "two warm road dots first, then a smaller body under the trees",
+        "D": "bright road streak first, then compact vehicle-like blob on grass"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "00:28-01:25",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which EO detail becomes a weak direct cue in IR?",
+      "options": {
+        "A": "red stripe and window contrast",
+        "B": "wing-fuselage outline",
+        "C": "grass versus pavement placement",
+        "D": "large-to-small scale change"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "evidence_sufficiency",
+        "cross_modal_phenomenon_explanation"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "00:28-01:25",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which chain keeps the aircraft off pavement in both modalities?",
+      "options": {
+        "A": "EO grass between paved edges -> later EO pavement at screen side -> IR body on grass",
+        "B": "EO aircraft on broad pavement -> later EO pavement at screen side -> IR body on grass",
+        "C": "EO grass between paved edges -> later EO aircraft enters driveway -> IR body on pavement",
+        "D": "EO tree shadow over aircraft -> later EO driveway -> IR road streak replaces aircraft"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "00:28-01:25",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "orbit_screen_side_and_modality_cues",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which cue argues against a taxi-along-pavement interpretation?",
+      "options": {
+        "A": "grass-side body; pavement shifts screen side",
+        "B": "grass-side body crossing onto the lane centerline",
+        "C": "body disappearing under trees before the later IR view",
+        "D": "body turning into two compact road objects"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "causal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "00:28-01:25",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "stationary_target_vs_camera_motion",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "Which early-to-late EO chain would be unsafe to treat as aircraft travel?",
+      "options": {
+        "A": "screen angle changes; grass and pavement bracket aircraft",
+        "B": "aircraft leaves the grass and follows the paved lane",
+        "C": "tree cover replaces the aircraft before pavement appears",
+        "D": "aircraft becomes two small road vehicles after pullback"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "stationary_target_vs_camera_motion",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "In the later IR view, which paved-surface layout surrounds the aircraft?",
+      "options": {
+        "A": "broad pavement lower-left; road above/right; aircraft on grass",
+        "B": "brighter broad pavement upper-right, narrower road lower-left, aircraft on pavement",
+        "C": "two bright roads crossing under the aircraft body",
+        "D": "tree canopy surrounding the aircraft with no pavement nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "01:17-01:25",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "stationary_target_vs_camera_motion",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which cross-modal chain avoids the paint-color shortcut?",
+      "options": {
+        "A": "EO outline on grass -> EO pavement side changes -> IR outline on grass",
+        "B": "EO red stripe -> EO pavement side changes -> IR brightest road stripe",
+        "C": "EO outline on grass -> EO aircraft enters road -> IR outline on pavement",
+        "D": "EO tree shadow -> EO pavement side changes -> IR road streak"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "00:28-01:25",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "stationary_target_vs_camera_motion",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "Which full-clip reading uses the orbit and IR evidence together?",
+      "options": {
+        "A": "parked grass-side aircraft; orbit shifts pavement; paint cue lost in IR",
+        "B": "taxiing aircraft from grass to pavement; IR shows the move as a road streak",
+        "C": "parked road vehicle first; later EO resolves it as a driveway object",
+        "D": "tree shadows as target first; IR turns them into an aircraft body"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "group_verdict",
+        "cross_modal_phenomenon_explanation"
+      ],
+      "time_reference_eo": "00:17-02:12",
+      "time_reference_ir": "00:28-01:25",
+      "modality_requirement": "EO+IR"
+    }
+  ]
+}

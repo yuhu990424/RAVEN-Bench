@@ -1,0 +1,367 @@
+{
+  "sample_id": "Air_Canada_Airliner",
+  "type": "airborne_airport_apron",
+  "main_event": "large_apron_object_matched_across_stand_views",
+  "event_description": "A large apron object is matched across EO and IR using stand fixtures, oval pad geometry, and nearby aircraft/service-object distractors.",
+  "scenario_type": "EO+IR-required",
+  "notes": {
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, or rationales to model prompts.",
+    "design_revision_note": "Video-reasoning v13: retained from the harder Air_Canada set because its smoke score is already near the target range.",
+    "acceptance_gates": [
+      "Run prompt leakage audit after request export.",
+      "Correct options must not be systematically longer or more specific than distractors.",
+      "Avoid class-name-only answers when a relational visual description can be used.",
+      "Questions should be answerable by a human viewer without hidden annotation metadata."
+    ]
+  },
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the EO apron view, which orientation plus stand relation fits the large object?",
+      "options": {
+        "A": "nose-left/tail-right; pole below mid-body",
+        "B": "nose-left/tail-right; pole at nose tip",
+        "C": "nose-right/tail-left; pole below mid-body",
+        "D": "nose-right/tail-left; pole at tail tip"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "scene_grounding",
+        "spatial_reasoning"
+      ],
+      "time_reference_eo": "00:34-00:35",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 2,
+      "capability_level": "L1",
+      "question": "In the close IR stand view, which pole relation is visible around the long dark body?",
+      "options": {
+        "A": "vertical pole crosses lower mid-body",
+        "B": "vertical pole crosses nose-side edge",
+        "C": "vertical pole crosses tail-side edge",
+        "D": "no vertical pole overlaps the body"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "01:03-01:18",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 3,
+      "capability_level": "L1",
+      "question": "In the wider IR view of several stands, which neighborhood matches the target stand?",
+      "options": {
+        "A": "oval pads, service lanes, parked bodies",
+        "B": "straight runway strip with no oval pads nearby",
+        "C": "terminal gate row with roof covering bodies",
+        "D": "grass infield with a single isolated body"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "scene_grounding",
+        "evidence_retrieval"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "00:42-01:30",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which EO relation argues that the object is parked at a stand rather than already rolling on a runway?",
+      "options": {
+        "A": "stand fixtures sit by body on apron",
+        "B": "centerline markings run directly under the body",
+        "C": "the body sits inside grass with no pavement pads",
+        "D": "the nose crosses a runway threshold marking"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "scene_grounding",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Across the IR views, which relation stays stable even as the camera scale changes?",
+      "options": {
+        "A": "long dark body tied to oval stand pad",
+        "B": "two bright dots leave the pad as a moving pair",
+        "C": "small vehicle blob becomes the main long body",
+        "D": "tail-side heat trail grows into the whole object"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "01:03-02:15",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which EO detail makes the taxiway interpretation less direct?",
+      "options": {
+        "A": "stand equipment sits beside the body",
+        "B": "runway threshold bars sit directly under the body",
+        "C": "grass fills the full area under both wings",
+        "D": "a long road lane separates the object from the apron"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "scene_grounding",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO/IR pair points to the same stand occupant rather than a neighboring stand?",
+      "options": {
+        "A": "EO mid-body pole; IR long body on one pad",
+        "B": "EO nose-side pole; IR long body on next pad",
+        "C": "EO tail-side pole; IR long body on taxi lane",
+        "D": "EO no nearby pole; IR long body over grass"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "entity_grounding"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "01:03-02:15",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "apron_stand_matching",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which paired observation best rejects a tail-plume or service-vehicle reading?",
+      "options": {
+        "A": "EO stand layout; IR broad body on pad",
+        "B": "EO runway strip; IR thin tail-side streak",
+        "C": "EO stand layout; IR small nose-side blob",
+        "D": "EO grass strip; IR two compact hot points"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "01:03-02:15",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "neighbor_stand_disambiguation",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "Which EO evidence chain should be used before choosing among neighboring stands?",
+      "options": {
+        "A": "stand fixture -> apron-pad neighborhood",
+        "B": "grass strip below body -> rural grass patch later",
+        "C": "terminal roof line -> hangar wall beside body",
+        "D": "runway threshold -> centerline under the nose"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "neighbor_stand_disambiguation",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR evidence separates the target stand occupant from smaller apron shapes?",
+      "options": {
+        "A": "long body spanning one pad",
+        "B": "two compact dots crossing between pads",
+        "C": "small blob parked at the nose-side edge",
+        "D": "thin tail-side streak with no broad body"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "time_reference_eo": "",
+      "time_reference_ir": "01:03-02:15",
+      "modality_requirement": "IR"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "neighbor_stand_disambiguation",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which cross-modal chain follows the parked object through viewpoint change?",
+      "options": {
+        "A": "EO mid-body pole -> IR pad body -> EO apron pads",
+        "B": "EO nose-side pole -> IR pad body -> EO apron pads",
+        "C": "EO tail-side pole -> IR pad body -> EO apron pads",
+        "D": "EO runway stripe -> IR pad body -> EO apron pads"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "01:03-02:15",
+      "modality_requirement": "EO+IR"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "neighbor_stand_disambiguation",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "Which final chain uses concrete cues from both videos without switching stands?",
+      "options": {
+        "A": "mid-body pole, oval pad, broad dark body",
+        "B": "nose-side pole, oval pad, broad dark body",
+        "C": "tail-side pole, oval pad, broad dark body",
+        "D": "runway stripe, oval pad, broad dark body"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "distractor_b",
+        "C": "distractor_c",
+        "D": "distractor_d"
+      },
+      "question_type": [
+        "group_verdict",
+        "cross_modal_phenomenon_explanation"
+      ],
+      "time_reference_eo": "00:34-02:38",
+      "time_reference_ir": "01:03-02:15",
+      "modality_requirement": "EO+IR"
+    }
+  ]
+}

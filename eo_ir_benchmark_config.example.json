@@ -1,0 +1,106 @@
+{
+  "annotations_dir": "/media/storage/users/yu.hu/video_understanding_benchmark/annotations",
+  "metadata_csv": "/media/storage/users/yu.hu/video_understanding_benchmark/maritime_video_metadata.csv",
+  "output_dir": "/media/storage/users/yu.hu/video_understanding_benchmark/eval_outputs",
+  "settings": [
+    "eo_only",
+    "ir_only",
+    "eo_ir"
+  ],
+  "steps": [
+    "prepare_dataset",
+    "export_model_requests"
+  ],
+  "models": [
+    {
+      "model_id": "gemini_2_5_flash",
+      "provider": "gemini",
+      "model_name": "gemini-2.5-flash",
+      "enabled": true,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_output_tokens": 32
+      },
+      "notes": "Fast multimodal API baseline."
+    },
+    {
+      "model_id": "gemini_2_5_pro",
+      "provider": "gemini",
+      "model_name": "gemini-2.5-pro",
+      "enabled": false,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_output_tokens": 32
+      },
+      "notes": "Enable when you want a stronger Gemini model."
+    },
+    {
+      "model_id": "gpt_4_1_mini",
+      "provider": "gpt",
+      "model_name": "gpt-4.1-mini",
+      "enabled": false,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_output_tokens": 32
+      },
+      "notes": "GPT-style OpenAI Responses request export."
+    },
+    {
+      "model_id": "kimi_k2_vision",
+      "provider": "kimi",
+      "model_name": "kimi-k2-vision",
+      "enabled": false,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_output_tokens": 32
+      },
+      "notes": "Kimi-style OpenAI-compatible request export."
+    },
+    {
+      "model_id": "qwen2_5_vl_3b",
+      "provider": "qwen",
+      "model_name": "Qwen/Qwen2.5-VL-3B-Instruct",
+      "enabled": false,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_new_tokens": 32
+      },
+      "notes": "Local Qwen smoke-test request export."
+    },
+    {
+      "model_id": "llava_next_video_7b",
+      "provider": "llava",
+      "model_name": "llava-hf/LLaVA-NeXT-Video-7B-hf",
+      "enabled": false,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_new_tokens": 32
+      },
+      "notes": "Local LLaVA video smoke-test request export."
+    },
+    {
+      "model_id": "internvl3_2b",
+      "provider": "internvl",
+      "model_name": "OpenGVLab/InternVL3-2B-hf",
+      "enabled": false,
+      "generation_config": {
+        "temperature": 0.0,
+        "max_new_tokens": 32
+      },
+      "notes": "Local InternVL smoke-test request export."
+    }
+  ],
+  "prepare_clips": {
+    "force": false,
+    "limit": null
+  },
+  "random_baseline": {
+    "model_id": "random_mcq",
+    "seed": 7
+  },
+  "score_predictions": {
+    "predictions_dir": "/media/storage/users/yu.hu/video_understanding_benchmark/eval_outputs/predictions",
+    "results_dir": "/media/storage/users/yu.hu/video_understanding_benchmark/eval_outputs/results",
+    "allow_partial": false
+  }
+}

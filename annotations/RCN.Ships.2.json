@@ -1,0 +1,385 @@
+{
+  "sample_id": "RCN.Ships.2",
+  "type": "maritime_naval_vessel_moored_at_pier",
+  "main_event": "single_grey_naval_vessel_moored",
+  "event_description": "A grey naval vessel is observed moored along a pier within a harbor. EO alternates between wide base context and close views of the ship. IR shows the same pier-and-ship geometry and water/shore thermal structure without a clear underway wake.",
+  "scenario_type": "EO+IR-required",
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the early EO segment, which cue pairing is visible for the object?",
+      "options": {
+        "A": "the object with moored hull aligned with the pier; harbor water and shore thermal structure nearby",
+        "B": "the object with harbor water and shore thermal structure; moored hull aligned with the pier nearby",
+        "C": "the object with pier, berth, or terminal geometry; fixed harbor background nearby",
+        "D": "the object with fixed harbor background; a wake-like water disturbance nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "relation_swap",
+        "C": "scene_pair",
+        "D": "background_pair"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the vessel stays moored along the pier",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Across the EO scale or angle change, which fixed-state cue stays paired with the object?",
+      "options": {
+        "A": "harbor water and shore thermal structure; view scale or angle changes",
+        "B": "pier, berth, or terminal geometry; view scale or angle changes",
+        "C": "fixed harbor background; view scale or angle changes",
+        "D": "moored hull aligned with the pier; view scale or angle changes"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "secondary_takeover",
+        "B": "scene_reset",
+        "C": "background_takeover",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the vessel stays moored along the pier",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In IR, which contrast pairing is visible near the object?",
+      "options": {
+        "A": "localized warm terminal or ship structure; pier, berth, or terminal geometry",
+        "B": "localized warm terminal or ship structure; harbor water and shore thermal structure",
+        "C": "localized warm terminal or ship structure; moored hull aligned with the pier",
+        "D": "localized warm terminal or ship structure; fixed harbor background"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_heat",
+        "B": "secondary_heat",
+        "C": "correct",
+        "D": "background_heat"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "the pier-and-ship geometry remains stable without a clear underway wake",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:00-01:35"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which nearby cue creates a same-scene confusion?",
+      "options": {
+        "A": "fixed harbor background; near the object",
+        "B": "moored hull aligned with the pier; near the object",
+        "C": "pier, berth, or terminal geometry; near the object",
+        "D": "harbor water and shore thermal structure; near the object"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "background_confuser",
+        "B": "relation_confuser",
+        "C": "scene_confuser",
+        "D": "correct"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "turning the wide-to-close camera change into vessel departure",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which EO/IR cue pair is visible?",
+      "options": {
+        "A": "EO: moored hull aligned with the pier; IR: fixed harbor background",
+        "B": "EO: pier, berth, or terminal geometry; IR: localized warm terminal or ship structure",
+        "C": "EO: harbor water and shore thermal structure; IR: localized warm terminal or ship structure",
+        "D": "EO: moored hull aligned with the pier; IR: localized warm terminal or ship structure"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "ir_background",
+        "B": "scene_pair",
+        "C": "modal_swap",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the vessel stays moored along the pier; IR: the pier-and-ship geometry remains stable without a clear underway wake",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": "00:00-01:35"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which cue pairing continues through camera/view change?",
+      "options": {
+        "A": "the object: harbor water and shore thermal structure; screen scale or angle changes",
+        "B": "the object: fixed harbor background; screen scale or angle changes",
+        "C": "the object: moored hull aligned with the pier; screen scale or angle changes",
+        "D": "the object: pier, berth, or terminal geometry; screen scale or angle changes"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_motion",
+        "B": "background_motion",
+        "C": "correct",
+        "D": "scene_motion"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the vessel stays moored along the pier",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO cue is aligned with the IR contrast cue?",
+      "options": {
+        "A": "EO cue: pier, berth, or terminal geometry; IR cue: localized warm terminal or ship structure",
+        "B": "EO cue: fixed harbor background; IR cue: localized warm terminal or ship structure",
+        "C": "EO cue: moored hull aligned with the pier; IR cue: localized warm terminal or ship structure",
+        "D": "EO cue: harbor water and shore thermal structure; IR cue: localized warm terminal or ship structure"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_pair",
+        "B": "background_pair",
+        "C": "correct",
+        "D": "secondary_pair"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the vessel stays moored along the pier; IR: the pier-and-ship geometry remains stable without a clear underway wake",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": "00:00-01:35"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears in the cross-modal chain?",
+      "options": {
+        "A": "EO/visible cue: harbor water and shore thermal structure; IR/contrast context: localized warm terminal or ship structure",
+        "B": "EO/visible cue: pier, berth, or terminal geometry; IR/contrast context: localized warm terminal or ship structure",
+        "C": "EO/visible cue: fixed harbor background; IR/contrast context: localized warm terminal or ship structure",
+        "D": "EO/visible cue: moored hull aligned with the pier; IR/contrast context: localized warm terminal or ship structure"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "scene_chain",
+        "C": "background_chain",
+        "D": "target_chain"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "turning the wide-to-close camera change into vessel departure",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": "00:00-01:35"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "When the view changes, which cue is checked against the nearby alternative?",
+      "options": {
+        "A": "harbor water and shore thermal structure; moored hull aligned with the pier",
+        "B": "fixed harbor background; moored hull aligned with the pier",
+        "C": "moored hull aligned with the pier; harbor water and shore thermal structure",
+        "D": "pier, berth, or terminal geometry; harbor water and shore thermal structure"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_first",
+        "B": "background_first",
+        "C": "correct",
+        "D": "scene_first"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the vessel stays moored along the pier",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR cue pairing appears in this interval?",
+      "options": {
+        "A": "localized warm terminal or ship structure; harbor water and shore thermal structure",
+        "B": "localized warm terminal or ship structure; pier, berth, or terminal geometry",
+        "C": "localized warm terminal or ship structure; moored hull aligned with the pier",
+        "D": "localized warm terminal or ship structure; fixed harbor background"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_thermal",
+        "B": "scene_thermal",
+        "C": "correct",
+        "D": "background_thermal"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "the pier-and-ship geometry remains stable without a clear underway wake",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:00-01:35"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR sequence account is visible?",
+      "options": {
+        "A": "EO: moored hull aligned with the pier; IR: localized warm terminal or ship structure",
+        "B": "EO: fixed harbor background; IR: localized warm terminal or ship structure",
+        "C": "EO: pier, berth, or terminal geometry; IR: localized warm terminal or ship structure",
+        "D": "EO: harbor water and shore thermal structure; IR: localized warm terminal or ship structure"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "background_modal",
+        "C": "scene_modal",
+        "D": "secondary_modal"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the vessel stays moored along the pier; IR: the pier-and-ship geometry remains stable without a clear underway wake",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": "00:00-01:35"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which cue chain is visible?",
+      "options": {
+        "A": "the object: harbor water and shore thermal structure; nearby cue: moored hull aligned with the pier",
+        "B": "the object: pier, berth, or terminal geometry; nearby cue: moored hull aligned with the pier",
+        "C": "the object: moored hull aligned with the pier; nearby cue: harbor water and shore thermal structure",
+        "D": "the object: fixed harbor background; nearby cue: harbor water and shore thermal structure"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_verdict",
+        "B": "scene_verdict",
+        "C": "correct",
+        "D": "background_verdict"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "turning the wide-to-close camera change into vessel departure",
+      "time_reference_eo": "00:00-01:35",
+      "time_reference_ir": "00:00-01:35"
+    }
+  ],
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "review_input": "1fps EO/IR review sheets under eval_outputs/video_reasoning_v13/review_sheets.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  }
+}

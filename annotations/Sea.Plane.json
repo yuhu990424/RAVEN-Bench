@@ -1,0 +1,385 @@
+{
+  "sample_id": "Sea.Plane",
+  "type": "airborne_stationary_aircraft_status",
+  "main_event": "assessing_operational_status_of_docked_seaplane",
+  "event_description": "An airborne camera orbits a seaplane dock. Several seaplanes are moored to the floating docks. The camera tracks a specific red and white Harbour Air seaplane. In the EO view, all aircraft appear stationary and identical in status. The IR view reveals a distinct, bright thermal hotspot on the nose (engine cowling) of the tracked red and white seaplane, indicating recent or current engine operation, while the other docked aircraft appear cold-soaked.",
+  "scenario_type": "EO+IR-required",
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "At the first close EO view, which nearby layout is visible around the red-and-white aircraft?",
+      "options": {
+        "A": "partial pale floatplane at the lower-left edge; dock structure along the right/lower side",
+        "B": "partial pale floatplane at the lower-right edge; dock structure along the left/lower side",
+        "C": "partial pale floatplane at the upper-left edge; dock structure along the right/lower side",
+        "D": "partial pale floatplane at the upper-right edge; dock structure along the left/upper side"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "lower_right_neighbor",
+        "C": "upper_left_neighbor",
+        "D": "upper_right_neighbor"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "several aircraft appear stationary and similar in status at the docks",
+      "time_reference_eo": "00:00-00:04",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "In the high EO orbit, which dock-row placement is visible for the red aircraft?",
+      "options": {
+        "A": "red aircraft at the left end of the row; pale aircraft clustered to its right",
+        "B": "red aircraft at the upper end of the row; pale aircraft clustered below it",
+        "C": "red aircraft at the right end of the row; pale aircraft clustered to its left",
+        "D": "red aircraft at the lower end of the row; pale aircraft clustered above it"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "left_row",
+        "B": "upper_row",
+        "C": "right_row",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "several aircraft appear stationary and similar in status at the docks",
+      "time_reference_eo": "00:08-00:24",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In the matching IR wide view, where is the compact aircraft return relative to the row?",
+      "options": {
+        "A": "left end of the aircraft row; cooler row shapes to its right",
+        "B": "lower end of the aircraft row; cooler row shapes above it",
+        "C": "right end of the aircraft row; cooler row shapes to its left",
+        "D": "upper end of the aircraft row; cooler row shapes below it"
+      },
+      "answer": "B",
+      "option_roles": {
+        "A": "left_ir_row",
+        "B": "correct",
+        "C": "right_ir_row",
+        "D": "upper_ir_row"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "a nose hotspot marks the tracked seaplane while other aircraft are cold-soaked",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:24-00:40"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Around 00:32 EO, which dock/water relation sits around the red aircraft?",
+      "options": {
+        "A": "dock walkway right of the red aircraft; dark water left of it",
+        "B": "dock walkway left of the red aircraft; dark water right of it",
+        "C": "dock walkway above the red aircraft; dark water below it",
+        "D": "dock walkway below the red aircraft; dark water above it"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "dock_right",
+        "B": "dock_left",
+        "C": "correct",
+        "D": "dock_below"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "transferring the hotspot to a neighboring docked aircraft",
+      "time_reference_eo": "00:30-00:35",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Around 00:40, which EO/IR dock-side match is visible?",
+      "options": {
+        "A": "EO: dock/walkway above-right of the red aircraft; IR: dock/walkway return above-right of the aircraft return",
+        "B": "EO: dock/walkway above-left of the red aircraft; IR: dock/walkway return above-left of the aircraft return",
+        "C": "EO: dock/walkway below-right of the red aircraft; IR: dock/walkway return below-right of the aircraft return",
+        "D": "EO: dock/walkway below-left of the red aircraft; IR: dock/walkway return below-left of the aircraft return"
+      },
+      "answer": "B",
+      "option_roles": {
+        "A": "above_right_match",
+        "B": "correct",
+        "C": "below_right_match",
+        "D": "below_left_match"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: several aircraft appear stationary and similar in status at the docks; IR: a nose hotspot marks the tracked seaplane while other aircraft are cold-soaked",
+      "time_reference_eo": "00:38-00:42",
+      "time_reference_ir": "00:38-00:42"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "In the late close EO pass, which background placement stays with the aircraft?",
+      "options": {
+        "A": "dock edge above the aircraft; open water below it",
+        "B": "dock edge right of the aircraft; open water left of it",
+        "C": "dock edge below the aircraft; open water above it",
+        "D": "dock edge left of the aircraft; open water right of it"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "dock_above",
+        "B": "dock_right",
+        "C": "correct",
+        "D": "dock_left"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "several aircraft appear stationary and similar in status at the docks",
+      "time_reference_eo": "01:13-01:29",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "In the late close EO/IR interval, which background-side match is visible?",
+      "options": {
+        "A": "EO: dock above and water below; IR: bright dock band above and darker water texture below",
+        "B": "EO: dock right and water left; IR: bright dock band right and darker water texture left",
+        "C": "EO: dock below and water above; IR: bright dock band below and darker water texture above",
+        "D": "EO: dock left and water right; IR: bright dock band left and darker water texture right"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "reverse_vertical",
+        "B": "right_left",
+        "C": "correct",
+        "D": "left_right"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: several aircraft appear stationary and similar in status at the docks; IR: a nose hotspot marks the tracked seaplane while other aircraft are cold-soaked",
+      "time_reference_eo": "01:13-01:29",
+      "time_reference_ir": "01:13-01:29"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears near the cross-modal match?",
+      "options": {
+        "A": "shoreline texture; thin EO structure near a warm region",
+        "B": "water glare; bright EO patch beside a compact hotspot",
+        "C": "adjacent cold aircraft; similar EO outline near the hotspot-bearing aircraft",
+        "D": "dock hardware; straight-line EO cue near a compact hotspot"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "shore_compete",
+        "B": "water_compete",
+        "C": "correct",
+        "D": "dock_compete"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "transferring the hotspot to a neighboring docked aircraft",
+      "time_reference_eo": "01:13-01:29",
+      "time_reference_ir": "01:13-01:29"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "After the view tightens, which EO background comparison is visible?",
+      "options": {
+        "A": "aircraft right of the dock-edge line; water beyond the right side of the aircraft",
+        "B": "aircraft above the dock-edge line; water beyond the upper side of the aircraft",
+        "C": "aircraft left of the dock-edge line; water beyond the left side of the aircraft",
+        "D": "aircraft below the dock-edge line; water beyond the lower side of the aircraft"
+      },
+      "answer": "B",
+      "option_roles": {
+        "A": "right_dockline",
+        "B": "correct",
+        "C": "left_dockline",
+        "D": "below_dockline"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "several aircraft appear stationary and similar in status at the docks",
+      "time_reference_eo": "01:13-01:29",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR background relation appears in the same close interval?",
+      "options": {
+        "A": "aircraft return just left of the bright dock band; water texture beyond the left side",
+        "B": "aircraft return just right of the bright dock band; water texture beyond the right side",
+        "C": "aircraft return just above the bright dock band; water texture beyond the upper side",
+        "D": "aircraft return just below the bright dock band; water texture beyond the lower side"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "left_ir_band",
+        "B": "right_ir_band",
+        "C": "correct",
+        "D": "below_ir_band"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "a nose hotspot marks the tracked seaplane while other aircraft are cold-soaked",
+      "time_reference_eo": "",
+      "time_reference_ir": "01:13-01:29"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR background sequence stays aligned?",
+      "options": {
+        "A": "EO: dock below the aircraft and water above; IR: bright dock band below the return and water texture above",
+        "B": "EO: dock above the aircraft and water below; IR: bright dock band above the return and water texture below",
+        "C": "EO: dock right of the aircraft and water left; IR: bright dock band right of the return and water texture left",
+        "D": "EO: dock left of the aircraft and water right; IR: bright dock band left of the return and water texture right"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "vertical_swap",
+        "C": "horizontal_right",
+        "D": "horizontal_left"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: several aircraft appear stationary and similar in status at the docks; IR: a nose hotspot marks the tracked seaplane while other aircraft are cold-soaked",
+      "time_reference_eo": "01:13-01:29",
+      "time_reference_ir": "01:13-01:29"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair_v2",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which two-stage position chain is visible?",
+      "options": {
+        "A": "wide view: red aircraft at lower row end; close view: aircraft above dock line with water beyond upper side",
+        "B": "wide view: red aircraft at left row end; close view: aircraft left of dock line with water beyond left side",
+        "C": "wide view: red aircraft at right row end; close view: aircraft right of dock line with water beyond right side",
+        "D": "wide view: red aircraft at upper row end; close view: aircraft below dock line with water beyond lower side"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "left_to_left",
+        "C": "right_to_right",
+        "D": "upper_to_below"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: several aircraft appear stationary and similar in status at the docks; IR: a nose hotspot marks the tracked seaplane while other aircraft are cold-soaked",
+      "time_reference_eo": "00:08-01:29",
+      "time_reference_ir": "00:08-01:29"
+    }
+  ],
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "review_input": "1fps EO/IR review sheets under eval_outputs/video_reasoning_v13/review_sheets.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  }
+}

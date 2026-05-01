@@ -1,0 +1,384 @@
+{
+  "sample_id": "Cargo.Truck",
+  "type": "airborne_highway_freight",
+  "main_event": "articulated_semitruck_highway_tracking_with_scale_change",
+  "event_description": "A white articulated semi-truck with a long box trailer is tracked from an airborne platform while driving steadily along a divided highway. The camera alternates between close oblique views and wider overhead views, producing substantial apparent scale changes. Cross-modal interpretation is most useful for preserving truck-trailer identity across viewpoints and for distinguishing persistent vehicle motion from changing camera geometry and surrounding traffic.",
+  "scenario_type": "EO+IR-required",
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  },
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the early EO segment, which cue pairing is visible for the object?",
+      "options": {
+        "A": "the object with box-trailer continuity across viewpoints; adjacent highway traffic nearby",
+        "B": "the object with adjacent highway traffic; box-trailer continuity across viewpoints nearby",
+        "C": "the object with lane edges, shoulders, fields, or road markings; roadside shadows or field texture nearby",
+        "D": "the object with roadside shadows or field texture; road-following motion through scale changes nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "relation_swap",
+        "C": "scene_pair",
+        "D": "background_pair"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the white tractor-trailer remains a coupled road object as the camera widens",
+      "time_reference_eo": "00:04-00:14",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Across the EO scale or angle change, which motion cue stays paired with the object?",
+      "options": {
+        "A": "adjacent highway traffic; view scale or angle changes",
+        "B": "lane edges, shoulders, fields, or road markings; view scale or angle changes",
+        "C": "roadside shadows or field texture; view scale or angle changes",
+        "D": "box-trailer continuity across viewpoints; view scale or angle changes"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "secondary_takeover",
+        "B": "scene_reset",
+        "C": "background_takeover",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the white tractor-trailer remains a coupled road object as the camera widens",
+      "time_reference_eo": "00:23-00:52",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In IR, which contrast pairing is visible near the object?",
+      "options": {
+        "A": "vehicle heat against pavement or field background; lane edges, shoulders, fields, or road markings",
+        "B": "vehicle heat against pavement or field background; adjacent highway traffic",
+        "C": "vehicle heat against pavement or field background; box-trailer continuity across viewpoints",
+        "D": "vehicle heat against pavement or field background; roadside shadows or field texture"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_heat",
+        "B": "secondary_heat",
+        "C": "correct",
+        "D": "background_heat"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "thermal contrast separates the moving tractor-trailer from road surface and traffic",
+      "time_reference_eo": "",
+      "time_reference_ir": "01:01-01:11"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which nearby cue creates a same-scene confusion?",
+      "options": {
+        "A": "roadside shadows or field texture; near the object",
+        "B": "box-trailer continuity across viewpoints; near the object",
+        "C": "lane edges, shoulders, fields, or road markings; near the object",
+        "D": "adjacent highway traffic; near the object"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "background_confuser",
+        "B": "relation_confuser",
+        "C": "scene_confuser",
+        "D": "correct"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "mistaking camera geometry or adjacent traffic for a target change",
+      "time_reference_eo": "00:52-00:52",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which EO/IR cue pair is visible?",
+      "options": {
+        "A": "EO: box-trailer continuity across viewpoints; IR: roadside shadows or field texture",
+        "B": "EO: lane edges, shoulders, fields, or road markings; IR: vehicle heat against pavement or field background",
+        "C": "EO: adjacent highway traffic; IR: vehicle heat against pavement or field background",
+        "D": "EO: box-trailer continuity across viewpoints; IR: vehicle heat against pavement or field background"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "ir_background",
+        "B": "scene_pair",
+        "C": "modal_swap",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the white tractor-trailer remains a coupled road object as the camera widens; IR: thermal contrast separates the moving tractor-trailer from road surface and traffic",
+      "time_reference_eo": "00:08-00:18",
+      "time_reference_ir": "00:08-00:18"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which cue pairing continues through camera/view change?",
+      "options": {
+        "A": "the object: adjacent highway traffic; screen scale or angle changes",
+        "B": "the object: roadside shadows or field texture; screen scale or angle changes",
+        "C": "the object: box-trailer continuity across viewpoints; screen scale or angle changes",
+        "D": "the object: lane edges, shoulders, fields, or road markings; screen scale or angle changes"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_motion",
+        "B": "background_motion",
+        "C": "correct",
+        "D": "scene_motion"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the white tractor-trailer remains a coupled road object as the camera widens",
+      "time_reference_eo": "00:58-01:16",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO cue is aligned with the IR contrast cue?",
+      "options": {
+        "A": "EO cue: lane edges, shoulders, fields, or road markings; IR cue: vehicle heat against pavement or field background",
+        "B": "EO cue: roadside shadows or field texture; IR cue: vehicle heat against pavement or field background",
+        "C": "EO cue: box-trailer continuity across viewpoints; IR cue: vehicle heat against pavement or field background",
+        "D": "EO cue: adjacent highway traffic; IR cue: vehicle heat against pavement or field background"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_pair",
+        "B": "background_pair",
+        "C": "correct",
+        "D": "secondary_pair"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the white tractor-trailer remains a coupled road object as the camera widens; IR: thermal contrast separates the moving tractor-trailer from road surface and traffic",
+      "time_reference_eo": "00:52-00:58",
+      "time_reference_ir": "00:52-00:58"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears in the cross-modal chain?",
+      "options": {
+        "A": "EO/visible cue: adjacent highway traffic; IR/contrast context: vehicle heat against pavement or field background",
+        "B": "EO/visible cue: lane edges, shoulders, fields, or road markings; IR/contrast context: vehicle heat against pavement or field background",
+        "C": "EO/visible cue: roadside shadows or field texture; IR/contrast context: vehicle heat against pavement or field background",
+        "D": "EO/visible cue: box-trailer continuity across viewpoints; IR/contrast context: vehicle heat against pavement or field background"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "scene_chain",
+        "C": "background_chain",
+        "D": "target_chain"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "mistaking camera geometry or adjacent traffic for a target change",
+      "time_reference_eo": "01:29-01:42",
+      "time_reference_ir": "01:29-01:42"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "When the view changes, which cue is checked against the nearby alternative?",
+      "options": {
+        "A": "adjacent highway traffic; box-trailer continuity across viewpoints",
+        "B": "roadside shadows or field texture; box-trailer continuity across viewpoints",
+        "C": "box-trailer continuity across viewpoints; adjacent highway traffic",
+        "D": "lane edges, shoulders, fields, or road markings; adjacent highway traffic"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_first",
+        "B": "background_first",
+        "C": "correct",
+        "D": "scene_first"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the white tractor-trailer remains a coupled road object as the camera widens",
+      "time_reference_eo": "00:04-01:20",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR cue pairing appears in this interval?",
+      "options": {
+        "A": "vehicle heat against pavement or field background; adjacent highway traffic",
+        "B": "vehicle heat against pavement or field background; lane edges, shoulders, fields, or road markings",
+        "C": "vehicle heat against pavement or field background; box-trailer continuity across viewpoints",
+        "D": "vehicle heat against pavement or field background; roadside shadows or field texture"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_thermal",
+        "B": "scene_thermal",
+        "C": "correct",
+        "D": "background_thermal"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "thermal contrast separates the moving tractor-trailer from road surface and traffic",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:42-00:52"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR sequence account is visible?",
+      "options": {
+        "A": "EO: box-trailer continuity across viewpoints; IR: vehicle heat against pavement or field background",
+        "B": "EO: roadside shadows or field texture; IR: vehicle heat against pavement or field background",
+        "C": "EO: lane edges, shoulders, fields, or road markings; IR: vehicle heat against pavement or field background",
+        "D": "EO: adjacent highway traffic; IR: vehicle heat against pavement or field background"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "background_modal",
+        "C": "scene_modal",
+        "D": "secondary_modal"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the white tractor-trailer remains a coupled road object as the camera widens; IR: thermal contrast separates the moving tractor-trailer from road surface and traffic",
+      "time_reference_eo": "01:01-01:48",
+      "time_reference_ir": "01:01-01:48"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which cue chain is visible?",
+      "options": {
+        "A": "the object: adjacent highway traffic; nearby cue: box-trailer continuity across viewpoints",
+        "B": "the object: lane edges, shoulders, fields, or road markings; nearby cue: box-trailer continuity across viewpoints",
+        "C": "the object: box-trailer continuity across viewpoints; nearby cue: adjacent highway traffic",
+        "D": "the object: roadside shadows or field texture; nearby cue: adjacent highway traffic"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_verdict",
+        "B": "scene_verdict",
+        "C": "correct",
+        "D": "background_verdict"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "mistaking camera geometry or adjacent traffic for a target change",
+      "time_reference_eo": "00:04-01:48",
+      "time_reference_ir": "00:04-01:48"
+    }
+  ]
+}

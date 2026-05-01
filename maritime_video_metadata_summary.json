@@ -1,0 +1,41 @@
+{
+  "input_directory": "/media/storage/raw/maritime",
+  "output_directory": "/media/storage/users/yu.hu/video_understanding_benchmark",
+  "total_video_files": 98,
+  "eo_files": 49,
+  "ir_files": 49,
+  "paired_groups": 49,
+  "exact_pairs": 49,
+  "fuzzy_pairs": 0,
+  "unpaired_groups": 0,
+  "eo_duration_stats": {
+    "count": 49,
+    "total_seconds": 6588.223,
+    "mean_seconds": 134.454,
+    "median_seconds": 109.126,
+    "min_seconds": 59.977,
+    "max_seconds": 522.706
+  },
+  "ir_duration_stats": {
+    "count": 49,
+    "total_seconds": 6352.382,
+    "mean_seconds": 129.64,
+    "median_seconds": 110.227,
+    "min_seconds": 52.302,
+    "max_seconds": 522.822
+  },
+  "pair_duration_delta_stats": {
+    "count": 49,
+    "total_seconds": 489.213,
+    "mean_seconds": 9.984,
+    "median_seconds": 1.618,
+    "min_seconds": 0.0,
+    "max_seconds": 277.36
+  },
+  "duration_source_counts": {
+    "header": 94,
+    "grab_count": 4
+  },
+  "unpaired_items": [],
+  "fuzzy_pair_details": []
+}

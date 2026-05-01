@@ -1,0 +1,385 @@
+{
+  "sample_id": "Fishing.Boat",
+  "type": "maritime_commercial_fishing_boat_underway",
+  "main_event": "fishing_boat_with_rigging_and_curved_wake",
+  "event_description": "A compact commercial fishing boat with visible rigging is tracked through close and wide views. The vessel maneuvers with a curved or changing wake, and IR preserves the warm hull and wake relation.",
+  "scenario_type": "EO+IR-required",
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "Around 00:10 EO, which screen-side hull/wake relation is visible?",
+      "options": {
+        "A": "hull on the right side of the wake; white wake extending to the left",
+        "B": "hull on the left side of the wake; white wake extending to the right",
+        "C": "hull below the wake; white wake extending upward",
+        "D": "hull above the wake; white wake extending downward"
+      },
+      "answer": "B",
+      "option_roles": {
+        "A": "left_wake",
+        "B": "correct",
+        "C": "upper_wake",
+        "D": "lower_wake"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "rigging and a curved or changing wake remain tied to the compact hull",
+      "time_reference_eo": "00:08-00:14",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Around 00:30 EO, which motion layout is visible?",
+      "options": {
+        "A": "boat at the top/front of the bright trail; wake trailing toward screen bottom",
+        "B": "boat at the right/front of the bright trail; wake trailing toward screen left",
+        "C": "boat at the left/front of the bright trail; wake trailing toward screen right",
+        "D": "boat at the bottom/front of the bright trail; wake trailing toward screen top"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "top_front",
+        "B": "right_front",
+        "C": "correct",
+        "D": "bottom_front"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "rigging and a curved or changing wake remain tied to the compact hull",
+      "time_reference_eo": "00:28-00:33",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "Around 00:30 IR, which hull/wake thermal layout is visible?",
+      "options": {
+        "A": "bright hull near the right side; broader wake texture spreading leftward",
+        "B": "bright hull near the left side; broader wake texture spreading rightward",
+        "C": "bright hull near the bottom side; broader wake texture spreading upward",
+        "D": "bright hull near the top side; broader wake texture spreading downward"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "left_hull",
+        "C": "bottom_hull",
+        "D": "top_hull"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "the warm hull and wake relation persists during the maneuver",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:28-00:33"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Around 00:50 EO, which V-wake layout creates the nearby path cue?",
+      "options": {
+        "A": "boat at the lower-left end; wake arms opening toward the upper-right side",
+        "B": "boat at the lower-right end; wake arms opening toward the upper-left side",
+        "C": "boat at the upper-left end; wake arms opening toward the lower-right side",
+        "D": "boat at the upper-right end; wake arms opening toward the lower-left side"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "lower_right",
+        "C": "upper_left",
+        "D": "upper_right"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "confusing the curved wake with a different path or second vessel",
+      "time_reference_eo": "00:48-00:53",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Around 00:50, which EO/IR wake-position match is visible?",
+      "options": {
+        "A": "EO: hull at upper-left with wake opening lower-right; IR: bright hull at upper-left with textured wake lower-right",
+        "B": "EO: hull at lower-right with wake opening upper-left; IR: bright hull at lower-right with textured wake upper-left",
+        "C": "EO: hull at upper-right with wake opening lower-left; IR: bright hull at upper-right with textured wake lower-left",
+        "D": "EO: hull at lower-left with wake opening upper-right; IR: bright hull at lower-left with textured wake upper-right"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "eo_ir_ul",
+        "B": "eo_ir_lr",
+        "C": "eo_ir_ur",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: rigging and a curved or changing wake remain tied to the compact hull; IR: the warm hull and wake relation persists during the maneuver",
+      "time_reference_eo": "00:48-00:53",
+      "time_reference_ir": "00:48-00:53"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Around 01:00 EO, which framing relation appears?",
+      "options": {
+        "A": "boat near the upper center; two wake bands extending downward behind it",
+        "B": "boat near the lower center; two wake bands extending upward behind it",
+        "C": "boat near the left center; two wake bands extending rightward behind it",
+        "D": "boat near the right center; two wake bands extending leftward behind it"
+      },
+      "answer": "B",
+      "option_roles": {
+        "A": "upper_center",
+        "B": "correct",
+        "C": "left_center",
+        "D": "right_center"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "rigging and a curved or changing wake remain tied to the compact hull",
+      "time_reference_eo": "00:58-01:03",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Around 01:00, which EO/IR direction match is visible?",
+      "options": {
+        "A": "EO: boat lower in frame with wake above it; IR: bright hull lower in frame with wake texture above it",
+        "B": "EO: boat right in frame with wake to the left; IR: bright hull right in frame with wake texture to the left",
+        "C": "EO: boat left in frame with wake to the right; IR: bright hull left in frame with wake texture to the right",
+        "D": "EO: boat upper in frame with wake below it; IR: bright hull upper in frame with wake texture below it"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "right_match",
+        "C": "left_match",
+        "D": "upper_match"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: rigging and a curved or changing wake remain tied to the compact hull; IR: the warm hull and wake relation persists during the maneuver",
+      "time_reference_eo": "00:58-01:03",
+      "time_reference_ir": "00:58-01:03"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Around 01:30 EO, which close-pass screen orientation is visible?",
+      "options": {
+        "A": "bow/front points to the left; white wake exits to the right",
+        "B": "bow/front points to the right; white wake exits to the left",
+        "C": "bow/front points upward; white wake exits downward",
+        "D": "bow/front points downward; white wake exits upward"
+      },
+      "answer": "B",
+      "option_roles": {
+        "A": "left_bow",
+        "B": "correct",
+        "C": "up_bow",
+        "D": "down_bow"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "confusing the curved wake with a different path or second vessel",
+      "time_reference_eo": "01:28-01:33",
+      "time_reference_ir": "01:28-01:33"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "Around 01:30 IR, which side-on thermal relation is visible?",
+      "options": {
+        "A": "bright hull profile toward the bottom; darker wake trail toward the top",
+        "B": "bright hull profile toward the left; darker wake trail toward the right",
+        "C": "bright hull profile toward the top; darker wake trail toward the bottom",
+        "D": "bright hull profile toward the right; darker wake trail toward the left"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "bottom_profile",
+        "B": "left_profile",
+        "C": "top_profile",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "the warm hull and wake relation persists during the maneuver",
+      "time_reference_eo": "",
+      "time_reference_ir": "01:28-01:33"
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Around 01:40 EO, which direction relation appears?",
+      "options": {
+        "A": "boat heading toward the upper-right; wake trailing lower-left",
+        "B": "boat heading toward the lower-left; wake trailing upper-right",
+        "C": "boat heading toward the upper-left; wake trailing lower-right",
+        "D": "boat heading toward the lower-right; wake trailing upper-left"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "lower_left",
+        "C": "upper_left",
+        "D": "lower_right"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "rigging and a curved or changing wake remain tied to the compact hull",
+      "time_reference_eo": "01:38-01:43",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Around 01:40, which combined EO/IR direction account is visible?",
+      "options": {
+        "A": "EO: boat ahead toward lower-right; IR: bright hull ahead of darker strands to upper-left",
+        "B": "EO: boat ahead toward lower-left; IR: bright hull ahead of darker strands to upper-right",
+        "C": "EO: boat ahead toward upper-right; IR: bright hull ahead of darker strands to lower-left",
+        "D": "EO: boat ahead toward upper-left; IR: bright hull ahead of darker strands to lower-right"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "lr_account",
+        "B": "ll_account",
+        "C": "correct",
+        "D": "ul_account"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: rigging and a curved or changing wake remain tied to the compact hull; IR: the warm hull and wake relation persists during the maneuver",
+      "time_reference_eo": "01:38-01:43",
+      "time_reference_ir": "01:38-01:43"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_screen_position_repair",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "At the end of the clip, which full-frame cue chain is visible?",
+      "options": {
+        "A": "boat near the left center; wake column extending rightward through the frame",
+        "B": "boat near the lower center; wake column extending upward through the frame",
+        "C": "boat near the right center; wake column extending leftward through the frame",
+        "D": "boat near the upper center; wake column extending downward through the frame"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "left_end",
+        "B": "bottom_end",
+        "C": "right_end",
+        "D": "correct"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: rigging and a curved or changing wake remain tied to the compact hull; IR: the warm hull and wake relation persists during the maneuver",
+      "time_reference_eo": "01:48-01:51",
+      "time_reference_ir": "01:48-01:51"
+    }
+  ],
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "review_input": "1fps EO/IR review sheets under eval_outputs/video_reasoning_v13/review_sheets.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  }
+}

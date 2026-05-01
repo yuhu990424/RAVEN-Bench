@@ -1,0 +1,40 @@
+{
+  "sample_id": "AERO_XXXXXX",
+  "type": "",
+  "main_event": "",
+  "event_description": "",
+  "scenario_type": "EO_IR_required",
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use step accuracy or prefix scoring. Step 4 is a group-verdict question and should be scored only if Steps 1-3 are correct, or reported separately.",
+      "H1": "Prefer prefix scoring because Steps 1-4 form a strict evidence chain for cross-modal reasoning."
+    },
+    "annotation_visibility_warning": "event_description should remain hidden from model input during evaluation to avoid answer leakage."
+  },
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_type": "mutual_scale_grounding",
+      "group_step": 1,
+      "question": "",
+      "options": {
+        "A": "",
+        "B": "",
+        "C": "",
+        "D": ""
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "",
+        "C": "",
+        "D": ""
+      },
+      "question_type": ["entity_grounding"],
+      "time_reference_eo": "",
+      "time_reference_ir": "",
+      "modality_requirement": "EO"
+    }
+  ]
+}

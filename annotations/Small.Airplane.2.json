@@ -1,0 +1,385 @@
+{
+  "sample_id": "Small.Airplane.2",
+  "type": "airborne_stationary_aircraft_status",
+  "main_event": "tracking_unconventional_aircraft_with_rear_engine_hotspot",
+  "event_description": "An airborne camera surveys an airport apron featuring an aircraft with an unconventional design: a twin-boom 'pusher' configuration (where the engine/propeller is at the rear of the main fuselage pod). The EO view clearly shows this unique structural layout. The IR view confirms the operational status by revealing a distinct, intense thermal hotspot located at the rear of the central pod, defying standard single-engine airplane expectations.",
+  "scenario_type": "EO+IR-required",
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the early EO segment, which cue pairing is visible for the object?",
+      "options": {
+        "A": "the object with rear engine hotspot tied to pusher geometry; standard nose-engine expectations nearby",
+        "B": "the object with standard nose-engine expectations; rear engine hotspot tied to pusher geometry nearby",
+        "C": "the object with apron, stand, grass, or pavement geometry; runway, taxiway, or apron markings nearby",
+        "D": "the object with runway, taxiway, or apron markings; camera orbit or scale change nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "relation_swap",
+        "C": "scene_pair",
+        "D": "background_pair"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the twin-boom structure places the engine/propeller at the rear of the fuselage pod",
+      "time_reference_eo": "00:00-00:10",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Across the EO scale or angle change, which fixed-state cue stays paired with the object?",
+      "options": {
+        "A": "standard nose-engine expectations; view scale or angle changes",
+        "B": "apron, stand, grass, or pavement geometry; view scale or angle changes",
+        "C": "runway, taxiway, or apron markings; view scale or angle changes",
+        "D": "rear engine hotspot tied to pusher geometry; view scale or angle changes"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "secondary_takeover",
+        "B": "scene_reset",
+        "C": "background_takeover",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the twin-boom structure places the engine/propeller at the rear of the fuselage pod",
+      "time_reference_eo": "00:15-00:25",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In IR, which contrast pairing is visible near the object?",
+      "options": {
+        "A": "engine, pavement, or body thermal contrast; apron, stand, grass, or pavement geometry",
+        "B": "engine, pavement, or body thermal contrast; standard nose-engine expectations",
+        "C": "engine, pavement, or body thermal contrast; rear engine hotspot tied to pusher geometry",
+        "D": "engine, pavement, or body thermal contrast; runway, taxiway, or apron markings"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_heat",
+        "B": "secondary_heat",
+        "C": "correct",
+        "D": "background_heat"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "an intense hotspot appears at the rear of the central pod",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:15-00:25"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which nearby cue creates a same-scene confusion?",
+      "options": {
+        "A": "runway, taxiway, or apron markings; near the object",
+        "B": "rear engine hotspot tied to pusher geometry; near the object",
+        "C": "apron, stand, grass, or pavement geometry; near the object",
+        "D": "standard nose-engine expectations; near the object"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "background_confuser",
+        "B": "relation_confuser",
+        "C": "scene_confuser",
+        "D": "correct"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "expecting the heat to be at the nose like a standard single-engine aircraft",
+      "time_reference_eo": "00:00-00:10; 00:15-00:25",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which EO/IR cue pair is visible?",
+      "options": {
+        "A": "EO: rear engine hotspot tied to pusher geometry; IR: runway, taxiway, or apron markings",
+        "B": "EO: apron, stand, grass, or pavement geometry; IR: engine, pavement, or body thermal contrast",
+        "C": "EO: standard nose-engine expectations; IR: engine, pavement, or body thermal contrast",
+        "D": "EO: rear engine hotspot tied to pusher geometry; IR: engine, pavement, or body thermal contrast"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "ir_background",
+        "B": "scene_pair",
+        "C": "modal_swap",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the twin-boom structure places the engine/propeller at the rear of the fuselage pod; IR: an intense hotspot appears at the rear of the central pod",
+      "time_reference_eo": "00:09-00:24",
+      "time_reference_ir": "00:09-00:24"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which cue pairing continues through camera/view change?",
+      "options": {
+        "A": "the object: standard nose-engine expectations; screen scale or angle changes",
+        "B": "the object: runway, taxiway, or apron markings; screen scale or angle changes",
+        "C": "the object: rear engine hotspot tied to pusher geometry; screen scale or angle changes",
+        "D": "the object: apron, stand, grass, or pavement geometry; screen scale or angle changes"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_motion",
+        "B": "background_motion",
+        "C": "correct",
+        "D": "scene_motion"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the twin-boom structure places the engine/propeller at the rear of the fuselage pod",
+      "time_reference_eo": "00:24-01:05",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO cue is aligned with the IR contrast cue?",
+      "options": {
+        "A": "EO cue: apron, stand, grass, or pavement geometry; IR cue: engine, pavement, or body thermal contrast",
+        "B": "EO cue: runway, taxiway, or apron markings; IR cue: engine, pavement, or body thermal contrast",
+        "C": "EO cue: rear engine hotspot tied to pusher geometry; IR cue: engine, pavement, or body thermal contrast",
+        "D": "EO cue: standard nose-engine expectations; IR cue: engine, pavement, or body thermal contrast"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_pair",
+        "B": "background_pair",
+        "C": "correct",
+        "D": "secondary_pair"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the twin-boom structure places the engine/propeller at the rear of the fuselage pod; IR: an intense hotspot appears at the rear of the central pod",
+      "time_reference_eo": "01:11-01:30",
+      "time_reference_ir": "01:11-01:30"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears in the cross-modal chain?",
+      "options": {
+        "A": "EO/visible cue: standard nose-engine expectations; IR/contrast context: engine, pavement, or body thermal contrast",
+        "B": "EO/visible cue: apron, stand, grass, or pavement geometry; IR/contrast context: engine, pavement, or body thermal contrast",
+        "C": "EO/visible cue: runway, taxiway, or apron markings; IR/contrast context: engine, pavement, or body thermal contrast",
+        "D": "EO/visible cue: rear engine hotspot tied to pusher geometry; IR/contrast context: engine, pavement, or body thermal contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "scene_chain",
+        "C": "background_chain",
+        "D": "target_chain"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "expecting the heat to be at the nose like a standard single-engine aircraft",
+      "time_reference_eo": "00:09-01:41",
+      "time_reference_ir": "00:09-01:41"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "When the view changes, which cue is checked against the nearby alternative?",
+      "options": {
+        "A": "standard nose-engine expectations; rear engine hotspot tied to pusher geometry",
+        "B": "runway, taxiway, or apron markings; rear engine hotspot tied to pusher geometry",
+        "C": "rear engine hotspot tied to pusher geometry; standard nose-engine expectations",
+        "D": "apron, stand, grass, or pavement geometry; standard nose-engine expectations"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_first",
+        "B": "background_first",
+        "C": "correct",
+        "D": "scene_first"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the twin-boom structure places the engine/propeller at the rear of the fuselage pod",
+      "time_reference_eo": "00:22-00:28",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR cue pairing appears in this interval?",
+      "options": {
+        "A": "engine, pavement, or body thermal contrast; standard nose-engine expectations",
+        "B": "engine, pavement, or body thermal contrast; apron, stand, grass, or pavement geometry",
+        "C": "engine, pavement, or body thermal contrast; rear engine hotspot tied to pusher geometry",
+        "D": "engine, pavement, or body thermal contrast; runway, taxiway, or apron markings"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_thermal",
+        "B": "scene_thermal",
+        "C": "correct",
+        "D": "background_thermal"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "an intense hotspot appears at the rear of the central pod",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:20-00:28"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR sequence account is visible?",
+      "options": {
+        "A": "EO: rear engine hotspot tied to pusher geometry; IR: engine, pavement, or body thermal contrast",
+        "B": "EO: runway, taxiway, or apron markings; IR: engine, pavement, or body thermal contrast",
+        "C": "EO: apron, stand, grass, or pavement geometry; IR: engine, pavement, or body thermal contrast",
+        "D": "EO: standard nose-engine expectations; IR: engine, pavement, or body thermal contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "background_modal",
+        "C": "scene_modal",
+        "D": "secondary_modal"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the twin-boom structure places the engine/propeller at the rear of the fuselage pod; IR: an intense hotspot appears at the rear of the central pod",
+      "time_reference_eo": "00:22-00:28",
+      "time_reference_ir": "00:22-00:28; 00:20-00:28"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which cue chain is visible?",
+      "options": {
+        "A": "the object: standard nose-engine expectations; nearby cue: rear engine hotspot tied to pusher geometry",
+        "B": "the object: apron, stand, grass, or pavement geometry; nearby cue: rear engine hotspot tied to pusher geometry",
+        "C": "the object: rear engine hotspot tied to pusher geometry; nearby cue: standard nose-engine expectations",
+        "D": "the object: runway, taxiway, or apron markings; nearby cue: standard nose-engine expectations"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_verdict",
+        "B": "scene_verdict",
+        "C": "correct",
+        "D": "background_verdict"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "expecting the heat to be at the nose like a standard single-engine aircraft",
+      "time_reference_eo": "00:22-00:28; 00:22-00:28; 00:00-00:29",
+      "time_reference_ir": "00:22-00:28; 00:20-00:28; 00:22-00:28; 00:20-00:28; 00:22-00:28; 00:20-00:28; 00:22-00:28; 00:20-00:28; 00:00-00:29"
+    }
+  ],
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "review_input": "1fps EO/IR review sheets under eval_outputs/video_reasoning_v13/review_sheets.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  }
+}

@@ -1,0 +1,385 @@
+{
+  "sample_id": "Fishing.boat-3",
+  "type": "maritime_small_boat_severe_glare",
+  "main_event": "small_motorboat_tracked_through_sun_glare",
+  "event_description": "A small motorboat is observed under severe sun glare and changing contrast. EO can be dominated by reflection, but the boat and wake reappear clearly. IR preserves the warm compact target and wake through the degraded visibility.",
+  "scenario_type": "EO+IR-required",
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the early EO segment, which cue pairing is visible for the object?",
+      "options": {
+        "A": "the object with boat reappearance after glare; saturated reflection on the water nearby",
+        "B": "the object with saturated reflection on the water; boat reappearance after glare nearby",
+        "C": "the object with shoreline, glare, or open-water texture; bright water or fixed shoreline texture nearby",
+        "D": "the object with bright water or fixed shoreline texture; wake shape next to the hull nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "relation_swap",
+        "C": "scene_pair",
+        "D": "background_pair"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the boat and wake disappear into glare and then reappear",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Across the EO scale or angle change, which motion cue stays paired with the object?",
+      "options": {
+        "A": "saturated reflection on the water; view scale or angle changes",
+        "B": "shoreline, glare, or open-water texture; view scale or angle changes",
+        "C": "bright water or fixed shoreline texture; view scale or angle changes",
+        "D": "boat reappearance after glare; view scale or angle changes"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "secondary_takeover",
+        "B": "scene_reset",
+        "C": "background_takeover",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the boat and wake disappear into glare and then reappear",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In IR, which contrast pairing is visible near the object?",
+      "options": {
+        "A": "warm hull or disturbed-water contrast; shoreline, glare, or open-water texture",
+        "B": "warm hull or disturbed-water contrast; saturated reflection on the water",
+        "C": "warm hull or disturbed-water contrast; boat reappearance after glare",
+        "D": "warm hull or disturbed-water contrast; bright water or fixed shoreline texture"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_heat",
+        "B": "secondary_heat",
+        "C": "correct",
+        "D": "background_heat"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "the warm compact target and wake remain trackable through degraded visibility",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:00-02:07"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which nearby cue creates a same-scene confusion?",
+      "options": {
+        "A": "bright water or fixed shoreline texture; near the object",
+        "B": "boat reappearance after glare; near the object",
+        "C": "shoreline, glare, or open-water texture; near the object",
+        "D": "saturated reflection on the water; near the object"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "background_confuser",
+        "B": "relation_confuser",
+        "C": "scene_confuser",
+        "D": "correct"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "using the reflection as the target during glare",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which EO/IR cue pair is visible?",
+      "options": {
+        "A": "EO: boat reappearance after glare; IR: bright water or fixed shoreline texture",
+        "B": "EO: shoreline, glare, or open-water texture; IR: warm hull or disturbed-water contrast",
+        "C": "EO: saturated reflection on the water; IR: warm hull or disturbed-water contrast",
+        "D": "EO: boat reappearance after glare; IR: warm hull or disturbed-water contrast"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "ir_background",
+        "B": "scene_pair",
+        "C": "modal_swap",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the boat and wake disappear into glare and then reappear; IR: the warm compact target and wake remain trackable through degraded visibility",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": "00:00-02:07"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which cue pairing continues through camera/view change?",
+      "options": {
+        "A": "the object: saturated reflection on the water; screen scale or angle changes",
+        "B": "the object: bright water or fixed shoreline texture; screen scale or angle changes",
+        "C": "the object: boat reappearance after glare; screen scale or angle changes",
+        "D": "the object: shoreline, glare, or open-water texture; screen scale or angle changes"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_motion",
+        "B": "background_motion",
+        "C": "correct",
+        "D": "scene_motion"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the boat and wake disappear into glare and then reappear",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO cue is aligned with the IR contrast cue?",
+      "options": {
+        "A": "EO cue: shoreline, glare, or open-water texture; IR cue: warm hull or disturbed-water contrast",
+        "B": "EO cue: bright water or fixed shoreline texture; IR cue: warm hull or disturbed-water contrast",
+        "C": "EO cue: boat reappearance after glare; IR cue: warm hull or disturbed-water contrast",
+        "D": "EO cue: saturated reflection on the water; IR cue: warm hull or disturbed-water contrast"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_pair",
+        "B": "background_pair",
+        "C": "correct",
+        "D": "secondary_pair"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the boat and wake disappear into glare and then reappear; IR: the warm compact target and wake remain trackable through degraded visibility",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": "00:00-02:07"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears in the cross-modal chain?",
+      "options": {
+        "A": "EO/visible cue: saturated reflection on the water; IR/contrast context: warm hull or disturbed-water contrast",
+        "B": "EO/visible cue: shoreline, glare, or open-water texture; IR/contrast context: warm hull or disturbed-water contrast",
+        "C": "EO/visible cue: bright water or fixed shoreline texture; IR/contrast context: warm hull or disturbed-water contrast",
+        "D": "EO/visible cue: boat reappearance after glare; IR/contrast context: warm hull or disturbed-water contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "scene_chain",
+        "C": "background_chain",
+        "D": "target_chain"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "using the reflection as the target during glare",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": "00:00-02:07"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "When the view changes, which cue is checked against the nearby alternative?",
+      "options": {
+        "A": "saturated reflection on the water; boat reappearance after glare",
+        "B": "bright water or fixed shoreline texture; boat reappearance after glare",
+        "C": "boat reappearance after glare; saturated reflection on the water",
+        "D": "shoreline, glare, or open-water texture; saturated reflection on the water"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_first",
+        "B": "background_first",
+        "C": "correct",
+        "D": "scene_first"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the boat and wake disappear into glare and then reappear",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR cue pairing appears in this interval?",
+      "options": {
+        "A": "warm hull or disturbed-water contrast; saturated reflection on the water",
+        "B": "warm hull or disturbed-water contrast; shoreline, glare, or open-water texture",
+        "C": "warm hull or disturbed-water contrast; boat reappearance after glare",
+        "D": "warm hull or disturbed-water contrast; bright water or fixed shoreline texture"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_thermal",
+        "B": "scene_thermal",
+        "C": "correct",
+        "D": "background_thermal"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "the warm compact target and wake remain trackable through degraded visibility",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:00-02:07"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR sequence account is visible?",
+      "options": {
+        "A": "EO: boat reappearance after glare; IR: warm hull or disturbed-water contrast",
+        "B": "EO: bright water or fixed shoreline texture; IR: warm hull or disturbed-water contrast",
+        "C": "EO: shoreline, glare, or open-water texture; IR: warm hull or disturbed-water contrast",
+        "D": "EO: saturated reflection on the water; IR: warm hull or disturbed-water contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "background_modal",
+        "C": "scene_modal",
+        "D": "secondary_modal"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the boat and wake disappear into glare and then reappear; IR: the warm compact target and wake remain trackable through degraded visibility",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": "00:00-02:07"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which cue chain is visible?",
+      "options": {
+        "A": "the object: saturated reflection on the water; nearby cue: boat reappearance after glare",
+        "B": "the object: shoreline, glare, or open-water texture; nearby cue: boat reappearance after glare",
+        "C": "the object: boat reappearance after glare; nearby cue: saturated reflection on the water",
+        "D": "the object: bright water or fixed shoreline texture; nearby cue: saturated reflection on the water"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_verdict",
+        "B": "scene_verdict",
+        "C": "correct",
+        "D": "background_verdict"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "using the reflection as the target during glare",
+      "time_reference_eo": "00:00-02:07",
+      "time_reference_ir": "00:00-02:07"
+    }
+  ],
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "review_input": "1fps EO/IR review sheets under eval_outputs/video_reasoning_v13/review_sheets.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  }
+}

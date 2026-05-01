@@ -1,0 +1,384 @@
+{
+  "sample_id": "Covered.Boat",
+  "type": "maritime_covered_passenger_vessel",
+  "main_event": "tracking_covered_boat_and_analyzing_thermal_payload_visibility",
+  "event_description": "An airborne camera tracks a small passenger boat with a large bright canopy. EO emphasizes the canopy and visible passengers beneath it; IR emphasizes a rear engine hotspot, a relatively cool canopy, and warmer interior passengers visible through the open sides.",
+  "scenario_type": "EO+IR-required",
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  },
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the early EO segment, which cue pairing is visible for the object?",
+      "options": {
+        "A": "the object with canopy, passengers, and stern engine layout; the canopy brightness nearby",
+        "B": "the object with the canopy brightness; canopy, passengers, and stern engine layout nearby",
+        "C": "the object with shoreline, glare, or open-water texture; bright water or fixed shoreline texture nearby",
+        "D": "the object with bright water or fixed shoreline texture; wake shape next to the hull nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "relation_swap",
+        "C": "scene_pair",
+        "D": "background_pair"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the canopy and passengers under it are visible through the open sides",
+      "time_reference_eo": "00:02-00:08",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Across the EO scale or angle change, which motion cue stays paired with the object?",
+      "options": {
+        "A": "the canopy brightness; view scale or angle changes",
+        "B": "shoreline, glare, or open-water texture; view scale or angle changes",
+        "C": "bright water or fixed shoreline texture; view scale or angle changes",
+        "D": "canopy, passengers, and stern engine layout; view scale or angle changes"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "secondary_takeover",
+        "B": "scene_reset",
+        "C": "background_takeover",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the canopy and passengers under it are visible through the open sides",
+      "time_reference_eo": "00:12-00:32",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In IR, which contrast pairing is visible near the object?",
+      "options": {
+        "A": "warm hull or disturbed-water contrast; shoreline, glare, or open-water texture",
+        "B": "warm hull or disturbed-water contrast; the canopy brightness",
+        "C": "warm hull or disturbed-water contrast; canopy, passengers, and stern engine layout",
+        "D": "warm hull or disturbed-water contrast; bright water or fixed shoreline texture"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_heat",
+        "B": "secondary_heat",
+        "C": "correct",
+        "D": "background_heat"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "a rear engine hotspot, cool canopy, and warmer interior passengers separate different parts of the boat",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:37-00:37"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which nearby cue creates a same-scene confusion?",
+      "options": {
+        "A": "bright water or fixed shoreline texture; near the object",
+        "B": "canopy, passengers, and stern engine layout; near the object",
+        "C": "shoreline, glare, or open-water texture; near the object",
+        "D": "the canopy brightness; near the object"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "background_confuser",
+        "B": "relation_confuser",
+        "C": "scene_confuser",
+        "D": "correct"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "reading the bright canopy as the heat source or ignoring the passengers under it",
+      "time_reference_eo": "00:02-00:42",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which EO/IR cue pair is visible?",
+      "options": {
+        "A": "EO: canopy, passengers, and stern engine layout; IR: bright water or fixed shoreline texture",
+        "B": "EO: shoreline, glare, or open-water texture; IR: warm hull or disturbed-water contrast",
+        "C": "EO: the canopy brightness; IR: warm hull or disturbed-water contrast",
+        "D": "EO: canopy, passengers, and stern engine layout; IR: warm hull or disturbed-water contrast"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "ir_background",
+        "B": "scene_pair",
+        "C": "modal_swap",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the canopy and passengers under it are visible through the open sides; IR: a rear engine hotspot, cool canopy, and warmer interior passengers separate different parts of the boat",
+      "time_reference_eo": "00:02-00:32",
+      "time_reference_ir": "00:02-00:32"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which cue pairing continues through camera/view change?",
+      "options": {
+        "A": "the object: the canopy brightness; screen scale or angle changes",
+        "B": "the object: bright water or fixed shoreline texture; screen scale or angle changes",
+        "C": "the object: canopy, passengers, and stern engine layout; screen scale or angle changes",
+        "D": "the object: shoreline, glare, or open-water texture; screen scale or angle changes"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_motion",
+        "B": "background_motion",
+        "C": "correct",
+        "D": "scene_motion"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the canopy and passengers under it are visible through the open sides",
+      "time_reference_eo": "00:20-00:32",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO cue is aligned with the IR contrast cue?",
+      "options": {
+        "A": "EO cue: shoreline, glare, or open-water texture; IR cue: warm hull or disturbed-water contrast",
+        "B": "EO cue: bright water or fixed shoreline texture; IR cue: warm hull or disturbed-water contrast",
+        "C": "EO cue: canopy, passengers, and stern engine layout; IR cue: warm hull or disturbed-water contrast",
+        "D": "EO cue: the canopy brightness; IR cue: warm hull or disturbed-water contrast"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_pair",
+        "B": "background_pair",
+        "C": "correct",
+        "D": "secondary_pair"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the canopy and passengers under it are visible through the open sides; IR: a rear engine hotspot, cool canopy, and warmer interior passengers separate different parts of the boat",
+      "time_reference_eo": "00:35-00:40",
+      "time_reference_ir": "00:35-00:40"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears in the cross-modal chain?",
+      "options": {
+        "A": "EO/visible cue: the canopy brightness; IR/contrast context: warm hull or disturbed-water contrast",
+        "B": "EO/visible cue: shoreline, glare, or open-water texture; IR/contrast context: warm hull or disturbed-water contrast",
+        "C": "EO/visible cue: bright water or fixed shoreline texture; IR/contrast context: warm hull or disturbed-water contrast",
+        "D": "EO/visible cue: canopy, passengers, and stern engine layout; IR/contrast context: warm hull or disturbed-water contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "scene_chain",
+        "C": "background_chain",
+        "D": "target_chain"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "reading the bright canopy as the heat source or ignoring the passengers under it",
+      "time_reference_eo": "00:02-00:57",
+      "time_reference_ir": "00:02-00:51"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "When the view changes, which cue is checked against the nearby alternative?",
+      "options": {
+        "A": "the canopy brightness; canopy, passengers, and stern engine layout",
+        "B": "bright water or fixed shoreline texture; canopy, passengers, and stern engine layout",
+        "C": "canopy, passengers, and stern engine layout; the canopy brightness",
+        "D": "shoreline, glare, or open-water texture; the canopy brightness"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_first",
+        "B": "background_first",
+        "C": "correct",
+        "D": "scene_first"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the canopy and passengers under it are visible through the open sides",
+      "time_reference_eo": "00:02-00:08",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR cue pairing appears in this interval?",
+      "options": {
+        "A": "warm hull or disturbed-water contrast; the canopy brightness",
+        "B": "warm hull or disturbed-water contrast; shoreline, glare, or open-water texture",
+        "C": "warm hull or disturbed-water contrast; canopy, passengers, and stern engine layout",
+        "D": "warm hull or disturbed-water contrast; bright water or fixed shoreline texture"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_thermal",
+        "B": "scene_thermal",
+        "C": "correct",
+        "D": "background_thermal"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "a rear engine hotspot, cool canopy, and warmer interior passengers separate different parts of the boat",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:02-00:50"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR sequence account is visible?",
+      "options": {
+        "A": "EO: canopy, passengers, and stern engine layout; IR: warm hull or disturbed-water contrast",
+        "B": "EO: bright water or fixed shoreline texture; IR: warm hull or disturbed-water contrast",
+        "C": "EO: shoreline, glare, or open-water texture; IR: warm hull or disturbed-water contrast",
+        "D": "EO: the canopy brightness; IR: warm hull or disturbed-water contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "background_modal",
+        "C": "scene_modal",
+        "D": "secondary_modal"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the canopy and passengers under it are visible through the open sides; IR: a rear engine hotspot, cool canopy, and warmer interior passengers separate different parts of the boat",
+      "time_reference_eo": "00:02-00:57",
+      "time_reference_ir": "00:02-00:50"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which cue chain is visible?",
+      "options": {
+        "A": "the object: the canopy brightness; nearby cue: canopy, passengers, and stern engine layout",
+        "B": "the object: shoreline, glare, or open-water texture; nearby cue: canopy, passengers, and stern engine layout",
+        "C": "the object: canopy, passengers, and stern engine layout; nearby cue: the canopy brightness",
+        "D": "the object: bright water or fixed shoreline texture; nearby cue: the canopy brightness"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_verdict",
+        "B": "scene_verdict",
+        "C": "correct",
+        "D": "background_verdict"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "reading the bright canopy as the heat source or ignoring the passengers under it",
+      "time_reference_eo": "00:02-00:57",
+      "time_reference_ir": "00:02-00:50"
+    }
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "sample_id": "Parked.Car",
+  "type": "airborne_stationary_vehicle_status",
+  "main_event": "assessing_operational_status_of_parked_vehicle_via_thermal_signature",
+  "event_description": "An airborne camera observes a red car parked in an asphalt parking lot. The EO view shows a stationary vehicle indistinguishable from others in terms of operational status. The IR view reveals a distinct bright (hot) spot over the engine compartment, indicating recent operation (residual heat). Additionally, a dark (cold) moving entity, likely a person, is seen walking toward the car in the IR view.",
+  "scenario_type": "EO+IR-required",
+  "qa": [
+    {
+      "uid": "1",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 1,
+      "capability_level": "L1",
+      "question": "In the early EO segment, which cue pairing is visible for the object?",
+      "options": {
+        "A": "the object with parked car state with residual heat; cold moving person nearby",
+        "B": "the object with cold moving person; parked car state with residual heat nearby",
+        "C": "the object with parking-lot lines and nearby parked vehicles; asphalt markings or curb edges nearby",
+        "D": "the object with asphalt markings or curb edges; a nearby moving person or vehicle nearby"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "relation_swap",
+        "C": "scene_pair",
+        "D": "background_pair"
+      },
+      "question_type": [
+        "spatial_reasoning",
+        "entity_grounding"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the car remains stationary among similar parked vehicles",
+      "time_reference_eo": "00:00-00:10",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "2",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Across the EO scale or angle change, which fixed-state cue stays paired with the object?",
+      "options": {
+        "A": "cold moving person; view scale or angle changes",
+        "B": "parking-lot lines and nearby parked vehicles; view scale or angle changes",
+        "C": "asphalt markings or curb edges; view scale or angle changes",
+        "D": "parked car state with residual heat; view scale or angle changes"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "secondary_takeover",
+        "B": "scene_reset",
+        "C": "background_takeover",
+        "D": "correct"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "camera_motion_vs_target_motion"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the car remains stationary among similar parked vehicles",
+      "time_reference_eo": "00:00-00:10",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "3",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 3,
+      "capability_level": "L2",
+      "question": "In IR, which contrast pairing is visible near the object?",
+      "options": {
+        "A": "engine-area heat and cool body contrast; parking-lot lines and nearby parked vehicles",
+        "B": "engine-area heat and cool body contrast; cold moving person",
+        "C": "engine-area heat and cool body contrast; parked car state with residual heat",
+        "D": "engine-area heat and cool body contrast; asphalt markings or curb edges"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_heat",
+        "B": "secondary_heat",
+        "C": "correct",
+        "D": "background_heat"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "entity_grounding"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "a bright engine-compartment hotspot and a cold moving person near the car appear",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:15-00:25"
+    },
+    {
+      "uid": "4",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 4,
+      "capability_level": "L2",
+      "question": "Which nearby cue creates a same-scene confusion?",
+      "options": {
+        "A": "asphalt markings or curb edges; near the object",
+        "B": "parked car state with residual heat; near the object",
+        "C": "parking-lot lines and nearby parked vehicles; near the object",
+        "D": "cold moving person; near the object"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "background_confuser",
+        "B": "relation_confuser",
+        "C": "scene_confuser",
+        "D": "correct"
+      },
+      "question_type": [
+        "distractor_rejection",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "turning residual engine heat or the moving person into vehicle motion",
+      "time_reference_eo": "00:00-00:10",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "5",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 5,
+      "capability_level": "L2",
+      "question": "Which EO/IR cue pair is visible?",
+      "options": {
+        "A": "EO: parked car state with residual heat; IR: asphalt markings or curb edges",
+        "B": "EO: parking-lot lines and nearby parked vehicles; IR: engine-area heat and cool body contrast",
+        "C": "EO: cold moving person; IR: engine-area heat and cool body contrast",
+        "D": "EO: parked car state with residual heat; IR: engine-area heat and cool body contrast"
+      },
+      "answer": "D",
+      "option_roles": {
+        "A": "ir_background",
+        "B": "scene_pair",
+        "C": "modal_swap",
+        "D": "correct"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the car remains stationary among similar parked vehicles; IR: a bright engine-compartment hotspot and a cold moving person near the car appear",
+      "time_reference_eo": "00:08-00:31",
+      "time_reference_ir": "00:08-00:31"
+    },
+    {
+      "uid": "6",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 6,
+      "capability_level": "L2",
+      "question": "Which cue pairing continues through camera/view change?",
+      "options": {
+        "A": "the object: cold moving person; screen scale or angle changes",
+        "B": "the object: asphalt markings or curb edges; screen scale or angle changes",
+        "C": "the object: parked car state with residual heat; screen scale or angle changes",
+        "D": "the object: parking-lot lines and nearby parked vehicles; screen scale or angle changes"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_motion",
+        "B": "background_motion",
+        "C": "correct",
+        "D": "scene_motion"
+      },
+      "question_type": [
+        "camera_motion_vs_target_motion",
+        "trajectory_reasoning"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the car remains stationary among similar parked vehicles",
+      "time_reference_eo": "00:36-01:12",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "7",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 7,
+      "capability_level": "L3",
+      "question": "Which EO cue is aligned with the IR contrast cue?",
+      "options": {
+        "A": "EO cue: parking-lot lines and nearby parked vehicles; IR cue: engine-area heat and cool body contrast",
+        "B": "EO cue: asphalt markings or curb edges; IR cue: engine-area heat and cool body contrast",
+        "C": "EO cue: parked car state with residual heat; IR cue: engine-area heat and cool body contrast",
+        "D": "EO cue: cold moving person; IR cue: engine-area heat and cool body contrast"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "scene_pair",
+        "B": "background_pair",
+        "C": "correct",
+        "D": "secondary_pair"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the car remains stationary among similar parked vehicles; IR: a bright engine-compartment hotspot and a cold moving person near the car appear",
+      "time_reference_eo": "00:08-00:31; 00:55-01:12",
+      "time_reference_ir": "00:08-00:31; 00:55-01:12"
+    },
+    {
+      "uid": "8",
+      "group_id": "C1",
+      "group_family": "consistency",
+      "group_focus": "v15_cue_chain",
+      "group_step": 8,
+      "capability_level": "L3",
+      "question": "Which competing cue appears in the cross-modal chain?",
+      "options": {
+        "A": "EO/visible cue: cold moving person; IR/contrast context: engine-area heat and cool body contrast",
+        "B": "EO/visible cue: parking-lot lines and nearby parked vehicles; IR/contrast context: engine-area heat and cool body contrast",
+        "C": "EO/visible cue: asphalt markings or curb edges; IR/contrast context: engine-area heat and cool body contrast",
+        "D": "EO/visible cue: parked car state with residual heat; IR/contrast context: engine-area heat and cool body contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "scene_chain",
+        "C": "background_chain",
+        "D": "target_chain"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "turning residual engine heat or the moving person into vehicle motion",
+      "time_reference_eo": "00:08-01:18",
+      "time_reference_ir": "00:08-01:18"
+    },
+    {
+      "uid": "9",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 1,
+      "capability_level": "L2",
+      "question": "When the view changes, which cue is checked against the nearby alternative?",
+      "options": {
+        "A": "cold moving person; parked car state with residual heat",
+        "B": "asphalt markings or curb edges; parked car state with residual heat",
+        "C": "parked car state with residual heat; cold moving person",
+        "D": "parking-lot lines and nearby parked vehicles; cold moving person"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_first",
+        "B": "background_first",
+        "C": "correct",
+        "D": "scene_first"
+      },
+      "question_type": [
+        "temporal_reasoning",
+        "evidence_sufficiency"
+      ],
+      "modality_requirement": "EO",
+      "evidence_note": "the car remains stationary among similar parked vehicles",
+      "time_reference_eo": "00:00-00:29",
+      "time_reference_ir": ""
+    },
+    {
+      "uid": "10",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 2,
+      "capability_level": "L2",
+      "question": "Which IR cue pairing appears in this interval?",
+      "options": {
+        "A": "engine-area heat and cool body contrast; cold moving person",
+        "B": "engine-area heat and cool body contrast; parking-lot lines and nearby parked vehicles",
+        "C": "engine-area heat and cool body contrast; parked car state with residual heat",
+        "D": "engine-area heat and cool body contrast; asphalt markings or curb edges"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_thermal",
+        "B": "scene_thermal",
+        "C": "correct",
+        "D": "background_thermal"
+      },
+      "question_type": [
+        "thermal_evidence_interpretation",
+        "spatial_reasoning"
+      ],
+      "modality_requirement": "IR",
+      "evidence_note": "a bright engine-compartment hotspot and a cold moving person near the car appear",
+      "time_reference_eo": "",
+      "time_reference_ir": "00:00-00:29"
+    },
+    {
+      "uid": "11",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 3,
+      "capability_level": "L3",
+      "question": "Which combined EO/IR sequence account is visible?",
+      "options": {
+        "A": "EO: parked car state with residual heat; IR: engine-area heat and cool body contrast",
+        "B": "EO: asphalt markings or curb edges; IR: engine-area heat and cool body contrast",
+        "C": "EO: parking-lot lines and nearby parked vehicles; IR: engine-area heat and cool body contrast",
+        "D": "EO: cold moving person; IR: engine-area heat and cool body contrast"
+      },
+      "answer": "A",
+      "option_roles": {
+        "A": "correct",
+        "B": "background_modal",
+        "C": "scene_modal",
+        "D": "secondary_modal"
+      },
+      "question_type": [
+        "cross_modal_phenomenon_explanation",
+        "causal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "EO: the car remains stationary among similar parked vehicles; IR: a bright engine-compartment hotspot and a cold moving person near the car appear",
+      "time_reference_eo": "00:00-00:29",
+      "time_reference_ir": "00:00-00:29"
+    },
+    {
+      "uid": "12",
+      "group_id": "H1",
+      "group_family": "coherence",
+      "group_focus": "v15_temporal_cue_chain",
+      "group_step": 4,
+      "capability_level": "L3",
+      "question": "For the full clip, which cue chain is visible?",
+      "options": {
+        "A": "the object: cold moving person; nearby cue: parked car state with residual heat",
+        "B": "the object: parking-lot lines and nearby parked vehicles; nearby cue: parked car state with residual heat",
+        "C": "the object: parked car state with residual heat; nearby cue: cold moving person",
+        "D": "the object: asphalt markings or curb edges; nearby cue: cold moving person"
+      },
+      "answer": "C",
+      "option_roles": {
+        "A": "secondary_verdict",
+        "B": "scene_verdict",
+        "C": "correct",
+        "D": "background_verdict"
+      },
+      "question_type": [
+        "group_verdict",
+        "temporal_reasoning"
+      ],
+      "modality_requirement": "EO+IR",
+      "evidence_note": "turning residual engine heat or the moving person into vehicle motion",
+      "time_reference_eo": "00:00-00:29",
+      "time_reference_ir": "00:00-00:29"
+    }
+  ],
+  "notes": {
+    "group_scoring_recommendation": {
+      "C1": "Use squared-ratio consistency scoring for the eight-step parallel cue chain.",
+      "H1": "Prefer prefix scoring because the four questions form a cue-chain verdict."
+    },
+    "annotation_visibility_warning": "Do not export main_event, event_description, answer, option_roles, evidence_note, rationales, or time_reference metadata to model prompts.",
+    "design_revision_note": "Video-reasoning v15 text-gate repair r2: options are neutral cue-pair choices with same-scene distractors, reducing answerability from wording alone.",
+    "review_input": "1fps EO/IR review sheets under eval_outputs/video_reasoning_v13/review_sheets.",
+    "acceptance_gates": [
+      "Run prepare-dataset schema validation.",
+      "Run request key-path leakage audit after export.",
+      "Run Qwen text-only/no-video baseline before video inference.",
+      "Reject samples or templates whose text-only accuracy suggests wording shortcuts.",
+      "Keep evidence_note fields internal; they are for annotation audit only."
+    ]
+  }
+}
