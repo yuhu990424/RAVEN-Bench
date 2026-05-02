@@ -51,7 +51,7 @@ class VideoRecord:
 
 def parse_args() -> argparse.Namespace:
     script_dir = Path(__file__).resolve().parent
-    default_input_dir = Path("/media/storage/raw/maritime")
+    default_input_dir = Path(os.environ.get("VIDEO_DATA_ROOT", script_dir / "data" / "raw_videos"))
     parser = argparse.ArgumentParser(
         description="Extract metadata and EO/IR pairing information for maritime videos."
     )

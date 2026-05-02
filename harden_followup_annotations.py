@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 
-ROOT = Path("/media/storage/users/yu.hu/video_understanding_benchmark")
+ROOT = Path(__file__).resolve().parent
 ANNOTATIONS_DIR = ROOT / "annotations"
 PROTECTED_FILES = {
     "5th.Wheel.json",

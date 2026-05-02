@@ -23,6 +23,7 @@ ROOT_DIR = Path(__file__).resolve().parent
 DEFAULT_ANNOTATIONS_DIR = ROOT_DIR / "annotations"
 DEFAULT_METADATA_CSV = ROOT_DIR / "maritime_video_metadata.csv"
 DEFAULT_OUTPUT_DIR = ROOT_DIR / "eval_outputs"
+DEFAULT_DATA_ROOT_ENV = "VIDEO_DATA_ROOT"
 DEFAULT_OPTION_SHUFFLE_SALT = "eo_ir_option_shuffle_v1"
 DEFAULT_MEDIA_ALIAS_SALT = "eo_ir_media_alias_v1"
 DEFAULT_VIDEO_INPUT_PROTOCOL = {
@@ -165,6 +166,15 @@ def parse_args() -> argparse.Namespace:
         type=Path,
         default=DEFAULT_METADATA_CSV,
         help=f"Metadata CSV describing EO/IR pairs. Default: {DEFAULT_METADATA_CSV}",
+    )
+    prepare_dataset.add_argument(
+        "--data-root",
+        type=Path,
+        default=None,
+        help=(
+            "Root directory for relative video paths in metadata. "
+            f"If omitted, ${DEFAULT_DATA_ROOT_ENV} is used when set; otherwise paths are resolved relative to the metadata CSV."
+        ),
     )
     prepare_dataset.add_argument(
         "--output-dir",
@@ -337,7 +347,10 @@ def prepare_dataset_command(args: argparse.Namespace) -> None:
     ensure_dir(media_aliases_dir / "eo")
     ensure_dir(media_aliases_dir / "ir")
 
-    metadata_rows = load_metadata(args.metadata_csv.resolve())
+    metadata_rows = load_metadata(
+        args.metadata_csv.resolve(),
+        data_root=resolve_data_root(getattr(args, "data_root", None)),
+    )
     manifest_rows, question_rows, source_answer_labels = build_manifest_and_questions(
         annotations_dir=args.annotations_dir.resolve(),
         metadata_rows=metadata_rows,
@@ -708,7 +721,7 @@ def build_manifest_and_questions(
     return manifest_rows, question_rows, source_answer_labels
 
 
-def load_metadata(path: Path) -> List[MetadataRecord]:
+def load_metadata(path: Path, data_root: Optional[Path] = None) -> List[MetadataRecord]:
     rows: List[MetadataRecord] = []
     with path.open(newline="", encoding="utf-8") as handle:
         reader = csv.DictReader(handle)
@@ -720,8 +733,18 @@ def load_metadata(path: Path) -> List[MetadataRecord]:
                     theme_guess=row["theme_guess"],
                     eo_filename=empty_to_none(row["eo_filename"]),
                     ir_filename=empty_to_none(row["ir_filename"]),
-                    eo_path=empty_to_none(row["eo_path"]),
-                    ir_path=empty_to_none(row["ir_path"]),
+                    eo_path=resolve_metadata_media_path(
+                        row.get("eo_path"),
+                        row.get("eo_filename"),
+                        metadata_dir=path.parent,
+                        data_root=data_root,
+                    ),
+                    ir_path=resolve_metadata_media_path(
+                        row.get("ir_path"),
+                        row.get("ir_filename"),
+                        metadata_dir=path.parent,
+                        data_root=data_root,
+                    ),
                     eo_duration_seconds=parse_optional_float(row["eo_duration_seconds"]),
                     ir_duration_seconds=parse_optional_float(row["ir_duration_seconds"]),
                     duration_delta_seconds=parse_optional_float(row["duration_delta_seconds"]),
@@ -731,6 +754,32 @@ def load_metadata(path: Path) -> List[MetadataRecord]:
     if not rows:
         raise BenchmarkError(f"No rows found in metadata CSV: {path}")
     return rows
+
+
+def resolve_data_root(value: Optional[Path]) -> Optional[Path]:
+    if value is not None:
+        return Path(os.path.expandvars(os.path.expanduser(str(value)))).resolve()
+    env_value = os.environ.get(DEFAULT_DATA_ROOT_ENV)
+    if env_value:
+        return Path(os.path.expandvars(os.path.expanduser(env_value))).resolve()
+    return None
+
+
+def resolve_metadata_media_path(
+    path_text: Optional[str],
+    filename_text: Optional[str],
+    metadata_dir: Path,
+    data_root: Optional[Path],
+) -> Optional[str]:
+    raw_value = empty_to_none(path_text) or empty_to_none(filename_text)
+    if raw_value is None:
+        return None
+    expanded = os.path.expandvars(os.path.expanduser(raw_value))
+    path = Path(expanded)
+    if path.is_absolute():
+        return str(path)
+    base_dir = data_root if data_root is not None else metadata_dir
+    return str((base_dir / path).resolve())
 
 
 def validate_annotation_schema(path: Path, annotation: Dict[str, object]) -> None:

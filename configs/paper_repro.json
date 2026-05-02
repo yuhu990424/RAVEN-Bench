@@ -1,15 +1,33 @@
 {
-  "annotations_dir": "annotations",
-  "metadata_csv": "metadata/video_metadata.example.csv",
+  "annotations_dir": "../annotations",
+  "metadata_csv": "../metadata/video_metadata.example.csv",
   "data_root": null,
-  "output_dir": "eval_outputs",
   "settings": [
     "eo_only",
     "ir_only",
     "eo_ir"
   ],
+  "prepare_dataset": {
+    "disable_option_shuffle": false,
+    "disable_media_aliases": false
+  },
+  "prepare_clips": {
+    "force": false,
+    "limit": null
+  },
+  "random_baseline": {
+    "model_id": "random_mcq",
+    "seed": 7
+  },
+  "score_predictions": {
+    "predictions_dir": "../eval_outputs/predictions",
+    "results_dir": "../eval_outputs/results",
+    "allow_partial": false
+  },
+  "output_dir": "../eval_outputs/paper_repro",
   "steps": [
     "prepare_dataset",
+    "export_requests",
     "export_model_requests"
   ],
   "models": [
@@ -367,22 +385,5 @@
       },
       "notes": "Remote-sensing-specific baseline entry. Uses the generic HF frame runner unless replaced with a UniRS-specific adapter."
     }
-  ],
-  "prepare_dataset": {
-    "disable_option_shuffle": false,
-    "disable_media_aliases": false
-  },
-  "prepare_clips": {
-    "force": false,
-    "limit": null
-  },
-  "random_baseline": {
-    "model_id": "random_mcq",
-    "seed": 7
-  },
-  "score_predictions": {
-    "predictions_dir": "eval_outputs/predictions",
-    "results_dir": "eval_outputs/results",
-    "allow_partial": false
-  }
+  ]
 }

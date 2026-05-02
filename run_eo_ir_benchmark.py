@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 from pathlib import Path
 from types import SimpleNamespace
 from typing import Any, Dict, List
@@ -78,6 +79,11 @@ def main() -> None:
                     annotations_dir=Path(config["annotations_dir"]),
                     metadata_csv=Path(config["metadata_csv"]),
                     output_dir=output_dir,
+                    data_root=Path(config["data_root"]) if config.get("data_root") else None,
+                    disable_option_shuffle=bool(config["prepare_dataset"]["disable_option_shuffle"]),
+                    option_shuffle_salt=str(config["prepare_dataset"]["option_shuffle_salt"]),
+                    disable_media_aliases=bool(config["prepare_dataset"]["disable_media_aliases"]),
+                    media_alias_salt=str(config["prepare_dataset"]["media_alias_salt"]),
                 )
             )
         elif step == "prepare_clips":
@@ -139,14 +145,28 @@ def load_config(path: Path) -> Dict[str, Any]:
 
 def apply_defaults(raw: Dict[str, Any], root_dir: Path) -> Dict[str, Any]:
     output_dir = str(resolve_config_path(root_dir, raw.get("output_dir"), ROOT_DIR / "eval_outputs"))
+    data_root = raw.get("data_root")
+    if data_root is None:
+        data_root = os.environ.get(benchmark.DEFAULT_DATA_ROOT_ENV)
 
     config = {
         "annotations_dir": str(resolve_config_path(root_dir, raw.get("annotations_dir"), ROOT_DIR / "annotations")),
         "metadata_csv": str(resolve_config_path(root_dir, raw.get("metadata_csv"), ROOT_DIR / "maritime_video_metadata.csv")),
         "output_dir": output_dir,
+        "data_root": str(resolve_config_path(root_dir, data_root, Path(data_root))) if data_root else None,
         "settings": raw.get("settings", list(benchmark.VALID_SETTINGS)),
         "steps": raw.get("steps", ["prepare_dataset", "export_model_requests"]),
         "models": raw.get("models", model_registry.default_model_configs()),
+        "prepare_dataset": {
+            "disable_option_shuffle": bool(raw.get("prepare_dataset", {}).get("disable_option_shuffle", False)),
+            "option_shuffle_salt": raw.get("prepare_dataset", {}).get(
+                "option_shuffle_salt", benchmark.DEFAULT_OPTION_SHUFFLE_SALT
+            ),
+            "disable_media_aliases": bool(raw.get("prepare_dataset", {}).get("disable_media_aliases", False)),
+            "media_alias_salt": raw.get("prepare_dataset", {}).get(
+                "media_alias_salt", benchmark.DEFAULT_MEDIA_ALIAS_SALT
+            ),
+        },
         "prepare_clips": {
             "force": bool(raw.get("prepare_clips", {}).get("force", False)),
             "limit": raw.get("prepare_clips", {}).get("limit"),
@@ -178,7 +198,8 @@ def apply_defaults(raw: Dict[str, Any], root_dir: Path) -> Dict[str, Any]:
 
 
 def resolve_config_path(root_dir: Path, value: Any, default: Path) -> Path:
-    path = Path(value) if value is not None else default
+    path_text = os.path.expandvars(os.path.expanduser(str(value))) if value is not None else str(default)
+    path = Path(path_text)
     if not path.is_absolute():
         path = root_dir / path
     return path.resolve()

@@ -19,7 +19,18 @@ class ModelSpec:
     notes: Optional[str] = None
 
 
-SUPPORTED_PROVIDERS = {"gemini", "gpt", "kimi", "qwen", "llava", "internvl", "videollama"}
+SUPPORTED_PROVIDERS = {
+    "gemini",
+    "gpt",
+    "kimi",
+    "qwen",
+    "llava",
+    "internvl",
+    "videollama",
+    "hf_vlm",
+    "hosted_vlm",
+    "unirs",
+}
 
 DEFAULT_MODEL_CONFIGS: List[Dict[str, object]] = [
     {
@@ -31,12 +42,44 @@ DEFAULT_MODEL_CONFIGS: List[Dict[str, object]] = [
         "notes": "Fast multimodal API baseline.",
     },
     {
+        "model_id": "gemini_3_1_flash",
+        "provider": "gemini",
+        "model_name": "gemini-3.1-flash",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_output_tokens": 32},
+        "notes": "Gemini 3.1 Flash REST API benchmark target.",
+    },
+    {
+        "model_id": "gemini_3_1_pro_preview",
+        "provider": "gemini",
+        "model_name": "gemini-3.1-pro-preview",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_output_tokens": 512, "thinking_level": "low"},
+        "notes": "Gemini 3.1 Pro Preview REST API benchmark target.",
+    },
+    {
+        "model_id": "gemini_3_flash_preview",
+        "provider": "gemini",
+        "model_name": "gemini-3-flash-preview",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_output_tokens": 512, "thinking_level": "minimal"},
+        "notes": "Gemini 3 Flash Preview REST API benchmark target.",
+    },
+    {
         "model_id": "gpt_4_1_mini",
         "provider": "gpt",
         "model_name": "gpt-4.1-mini",
         "enabled": False,
         "generation_config": {"temperature": 0.0, "max_output_tokens": 32},
         "notes": "GPT-style OpenAI Responses payload.",
+    },
+    {
+        "model_id": "gpt_5_4",
+        "provider": "gpt",
+        "model_name": "gpt-5.4",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_output_tokens": 32},
+        "notes": "GPT-5.4 OpenAI Responses API benchmark target.",
     },
     {
         "model_id": "kimi_k2_vision",
@@ -47,12 +90,36 @@ DEFAULT_MODEL_CONFIGS: List[Dict[str, object]] = [
         "notes": "Kimi-style OpenAI-compatible multimodal payload.",
     },
     {
+        "model_id": "kimivl_a3b_instruct",
+        "provider": "kimi",
+        "model_name": "moonshotai/Kimi-VL-A3B-Instruct",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local Kimi-VL A3B Instruct benchmark target using Hugging Face Transformers.",
+    },
+    {
+        "model_id": "smolvlm2_2_2b_instruct",
+        "provider": "hf_vlm",
+        "model_name": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target.",
+    },
+    {
         "model_id": "qwen2_5_vl_3b",
         "provider": "qwen",
         "model_name": "Qwen/Qwen2.5-VL-3B-Instruct",
         "enabled": False,
         "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
         "notes": "Local Qwen smoke-test default. Smaller than the 7B release model and suitable for local call validation.",
+    },
+    {
+        "model_id": "qwen3_vl_2b_instruct",
+        "provider": "qwen",
+        "model_name": "Qwen/Qwen3-VL-2B-Instruct",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local Qwen3-VL 2B benchmark target using the Qwen local runner.",
     },
     {
         "model_id": "qwen3_5_9b",
@@ -63,12 +130,44 @@ DEFAULT_MODEL_CONFIGS: List[Dict[str, object]] = [
         "notes": "Local Qwen3.5 benchmark target. Requires a recent Transformers build with Qwen3.5 multimodal support.",
     },
     {
+        "model_id": "qwen3_5_9b_instruct",
+        "provider": "qwen",
+        "model_name": "Qwen/Qwen3.5-9B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Alias entry for the Qwen3.5 9B Instruct row in the benchmark table.",
+    },
+    {
+        "model_id": "qwen3_vl_8b_instruct",
+        "provider": "qwen",
+        "model_name": "Qwen/Qwen3-VL-8B-Instruct",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local Qwen3-VL 8B benchmark target using the Qwen local runner.",
+    },
+    {
+        "model_id": "qwen3_vl_30b_a3b_instruct",
+        "provider": "qwen",
+        "model_name": "Qwen/Qwen3-VL-30B-A3B-Instruct",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local Qwen3-VL 30B-A3B benchmark target. Usually requires multi-GPU or aggressive quantization.",
+    },
+    {
         "model_id": "llava_next_video_7b",
         "provider": "llava",
         "model_name": "llava-hf/LLaVA-NeXT-Video-7B-hf",
         "enabled": False,
         "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
         "notes": "Local LLaVA video smoke-test default. Kept at 7B because the public Transformers video checkpoint is 7B.",
+    },
+    {
+        "model_id": "llava_video_7b_qwen2",
+        "provider": "hf_vlm",
+        "model_name": "lmms-lab/LLaVA-Video-7B-Qwen2",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target for LLaVA-Video-7B-Qwen2.",
     },
     {
         "model_id": "internvl3_2b",
@@ -87,12 +186,108 @@ DEFAULT_MODEL_CONFIGS: List[Dict[str, object]] = [
         "notes": "Local InternVL3.5 benchmark target. Uses the official 8B Hugging Face checkpoint.",
     },
     {
+        "model_id": "internvl3_5_30b_a3b",
+        "provider": "internvl",
+        "model_name": "OpenGVLab/InternVL3_5-30B-A3B-HF",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local InternVL3.5 30B-A3B benchmark target. Checkpoint name can be overridden by CLI.",
+    },
+    {
+        "model_id": "minicpm_v45",
+        "provider": "hf_vlm",
+        "model_name": "openbmb/MiniCPM-V-4_5",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target.",
+    },
+    {
+        "model_id": "molmo2_8b",
+        "provider": "hf_vlm",
+        "model_name": "allenai/Molmo2-8B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target. Override model_name if using a different Molmo2 release.",
+    },
+    {
+        "model_id": "keye_vl15_8b",
+        "provider": "hf_vlm",
+        "model_name": "Kwai-Keye/Keye-VL-1.5-8B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target. Override model_name if the release path differs.",
+    },
+    {
+        "model_id": "mimo_vl_7b_rl_2508",
+        "provider": "hf_vlm",
+        "model_name": "XiaomiMiMo/MiMo-VL-7B-RL-2508",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target. Override model_name if the release path differs.",
+    },
+    {
         "model_id": "videollama3_7b",
         "provider": "videollama",
         "model_name": "DAMO-NLP-SG/VideoLLaMA3-7B",
         "enabled": False,
         "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
         "notes": "Local VideoLLaMA3 benchmark target using the official 7B video-chat checkpoint.",
+    },
+    {
+        "model_id": "videollama3_2b",
+        "provider": "videollama",
+        "model_name": "DAMO-NLP-SG/VideoLLaMA3-2B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local VideoLLaMA3 2B benchmark target using the VideoLLaMA3 runner.",
+    },
+    {
+        "model_id": "videoxl_pro_3b",
+        "provider": "hf_vlm",
+        "model_name": "BAAI/Video-XL-Pro-3B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target. Override model_name if the release path differs.",
+    },
+    {
+        "model_id": "internvideo25_chat_8b",
+        "provider": "hf_vlm",
+        "model_name": "OpenGVLab/InternVideo2_5_Chat_8B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target. May require project-specific remote code.",
+    },
+    {
+        "model_id": "mplug_owl3_7b",
+        "provider": "hf_vlm",
+        "model_name": "mPLUG/mPLUG-Owl3-7B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Local generic Hugging Face frame-sequence runner target. Override model_name if the release path differs.",
+    },
+    {
+        "model_id": "qwen3_vl_235b_a22b_instruct",
+        "provider": "hosted_vlm",
+        "model_name": "Qwen/Qwen3-VL-235B-A22B-Instruct",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_tokens": 32},
+        "notes": "Hosted open-weight model via OpenAI-compatible chat-completions API.",
+    },
+    {
+        "model_id": "internvl3_5_241b_a28b",
+        "provider": "hosted_vlm",
+        "model_name": "OpenGVLab/InternVL3_5-241B-A28B",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_tokens": 32},
+        "notes": "Hosted open-weight model via OpenAI-compatible chat-completions API. Override provider model name as needed.",
+    },
+    {
+        "model_id": "unirs",
+        "provider": "unirs",
+        "model_name": "IDEA-Research/UniRS",
+        "enabled": False,
+        "generation_config": {"temperature": 0.0, "max_new_tokens": 32},
+        "notes": "Remote-sensing-specific baseline entry. Uses the generic HF frame runner unless replaced with a UniRS-specific adapter.",
     },
 ]
 
@@ -178,6 +373,12 @@ def build_provider_payload(
         return build_internvl_payload(question, setting, model)
     if model.provider == "videollama":
         return build_videollama_payload(question, setting, model)
+    if model.provider == "hf_vlm":
+        return build_hf_vlm_payload(question, setting, model)
+    if model.provider == "hosted_vlm":
+        return build_hosted_vlm_payload(question, setting, model)
+    if model.provider == "unirs":
+        return build_unirs_payload(question, setting, model)
     raise benchmark.BenchmarkError(f"Unsupported provider: {model.provider}")
 
 
@@ -298,6 +499,51 @@ def build_videollama_payload(question: Dict[str, object], setting: str, model: M
         "video_input": video_input,
         "processor_hint": "videollama3_chat",
     }
+
+
+def build_hf_vlm_payload(question: Dict[str, object], setting: str, model: ModelSpec) -> Dict[str, object]:
+    video_input = benchmark.build_video_input_protocol()
+    return {
+        "provider": "hf_vlm",
+        "model": model.model_name,
+        "runtime": "local_transformers_frame_sequence",
+        "prompt": benchmark.build_prompt(question, setting, build_video_instruction(setting)),
+        "video_paths": select_video_paths(question, setting),
+        "generation_config": model.generation_config,
+        "video_input": video_input,
+        "processor_hint": "auto_chat_template_images",
+    }
+
+
+def build_hosted_vlm_payload(question: Dict[str, object], setting: str, model: ModelSpec) -> Dict[str, object]:
+    video_paths = select_video_paths(question, setting)
+    video_input = benchmark.build_video_input_protocol()
+    return {
+        "provider": "hosted_vlm",
+        "model": model.model_name,
+        "api_style": "openai_compatible_chat_completions",
+        "messages": [
+            {
+                "role": "user",
+                "content": benchmark.build_prompt(question, setting, build_video_instruction(setting)),
+            }
+        ],
+        "video_paths": video_paths,
+        "generation_config": model.generation_config,
+        "video_input": video_input,
+        "frame_extraction": {
+            "fps": video_input["sampling"]["fps"],
+            "max_frames_per_video": video_input["sampling"]["max_frames_per_video"],
+            "frame_resolution": video_input["frame_resolution"],
+        },
+    }
+
+
+def build_unirs_payload(question: Dict[str, object], setting: str, model: ModelSpec) -> Dict[str, object]:
+    payload = build_hf_vlm_payload(question, setting, model)
+    payload["provider"] = "unirs"
+    payload["processor_hint"] = "unirs_or_auto_chat_template_images"
+    return payload
 
 
 def select_video_paths(question: Dict[str, object], setting: str) -> List[str]:
