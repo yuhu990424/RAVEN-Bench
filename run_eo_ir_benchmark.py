@@ -9,12 +9,12 @@ from pathlib import Path
 from types import SimpleNamespace
 from typing import Any, Dict, List
 
-import eo_ir_benchmark as benchmark
-import model_registry
+from raven_benchmark import benchmark
+from raven_benchmark import model_registry
 
 
 ROOT_DIR = Path(__file__).resolve().parent
-DEFAULT_CONFIG = ROOT_DIR / "eo_ir_benchmark_config.example.json"
+DEFAULT_CONFIG = ROOT_DIR / "configs" / "example.json"
 VALID_STEPS = {
     "prepare_dataset",
     "prepare_clips",
@@ -150,8 +150,8 @@ def apply_defaults(raw: Dict[str, Any], root_dir: Path) -> Dict[str, Any]:
         data_root = os.environ.get(benchmark.DEFAULT_DATA_ROOT_ENV)
 
     config = {
-        "annotations_dir": str(resolve_config_path(root_dir, raw.get("annotations_dir"), ROOT_DIR / "annotations")),
-        "metadata_csv": str(resolve_config_path(root_dir, raw.get("metadata_csv"), ROOT_DIR / "maritime_video_metadata.csv")),
+        "annotations_dir": str(resolve_config_path(root_dir, raw.get("annotations_dir"), ROOT_DIR / "data" / "annotations")),
+        "metadata_csv": str(resolve_config_path(root_dir, raw.get("metadata_csv"), ROOT_DIR / "data" / "metadata" / "video_metadata.example.csv")),
         "output_dir": output_dir,
         "data_root": str(resolve_config_path(root_dir, data_root, Path(data_root))) if data_root else None,
         "settings": raw.get("settings", list(benchmark.VALID_SETTINGS)),

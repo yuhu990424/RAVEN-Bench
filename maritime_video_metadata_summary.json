@@ -1,7 +1,0 @@
-{
-  "input_directory": "${VIDEO_DATA_ROOT}",
-  "output_directory": ".",
-  "sample_count": 49,
-  "metadata_csv": "metadata/video_metadata.example.csv",
-  "note": "Anonymized paper artifact metadata uses relative video filenames. Set VIDEO_DATA_ROOT to the directory containing the raw .ts videos."
-}

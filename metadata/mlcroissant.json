@@ -1,0 +1,1406 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "sc": "https://schema.org/",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "dct": "http://purl.org/dc/terms/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileObject": "cr:fileObject",
+    "fileProperty": "cr:fileProperty",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "conformsTo": [
+    "http://mlcommons.org/croissant/1.0",
+    "http://mlcommons.org/croissant/RAI/1.0"
+  ],
+  "name": "EO/IR Video Understanding Benchmark",
+  "description": "A paired electro-optical and infrared video understanding benchmark for evaluating multimodal models on cross-modal evidence use, temporal reasoning, target grounding, and distractor rejection. The submission snapshot contains 48 annotated EO/IR samples, 576 multiple-choice questions, anonymized video metadata, and scripts for request export and scoring.",
+  "url": "https://dataverse.harvard.edu/previewurl.xhtml?token=73dc5b15-a0ce-4c20-be84-f8fde196f69b",
+  "license": "https://www.apache.org/licenses/LICENSE-2.0",
+  "creator": [
+    {
+      "@type": "sc:Organization",
+      "name": "Anonymous authors"
+    }
+  ],
+  "publisher": [
+    {
+      "@type": "sc:Organization",
+      "name": "Anonymous authors"
+    }
+  ],
+  "datePublished": "2026-05-03",
+  "dateCreated": "2026-05-03",
+  "dateModified": "2026-05-03",
+  "version": "1.0.0-submission-draft",
+  "keywords": [
+    "video understanding",
+    "electro-optical video",
+    "infrared video",
+    "EO/IR",
+    "multimodal evaluation",
+    "vision-language models",
+    "benchmark"
+  ],
+  "inLanguage": "en",
+  "isLiveDataset": false,
+  "citeAs": "Anonymous authors. EO/IR Video Understanding Benchmark. NeurIPS 2026 Evaluations and Datasets submission artifact, 2026.",
+  "variableMeasured": [
+    {
+      "@type": "sc:PropertyValue",
+      "name": "annotated_samples",
+      "value": 48
+    },
+    {
+      "@type": "sc:PropertyValue",
+      "name": "metadata_rows",
+      "value": 49
+    },
+    {
+      "@type": "sc:PropertyValue",
+      "name": "total_questions",
+      "value": 576
+    },
+    {
+      "@type": "sc:PropertyValue",
+      "name": "questions_per_sample",
+      "value": 12
+    },
+    {
+      "@type": "sc:PropertyValue",
+      "name": "eo_total_duration_seconds",
+      "value": 6498.802
+    },
+    {
+      "@type": "sc:PropertyValue",
+      "name": "ir_total_duration_seconds",
+      "value": 6266.08
+    },
+    {
+      "@type": "sc:PropertyValue",
+      "name": "eo_ir_total_duration_seconds",
+      "value": 12764.882
+    }
+  ],
+  "distribution": [
+    {
+      "@type": "cr:FileSet",
+      "@id": "raw-eo-ir-video-files",
+      "name": "Raw paired EO/IR video files",
+      "description": "Paired electro-optical and infrared MPEG transport stream videos. The anonymous repository stores only relative filenames; the hosted dataset must provide these raw files under the documented layout.",
+      "encodingFormat": "video/MP2T",
+      "includes": [
+        "*_EO.ts",
+        "*_IR.ts"
+      ]
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "annotation-json-files",
+      "name": "Annotation JSON files",
+      "description": "One JSON annotation file per annotated EO/IR sample.",
+      "encodingFormat": "application/json",
+      "includes": "data/annotations/*.json"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "video-metadata-csv",
+      "name": "data/metadata/video_metadata.example.csv",
+      "description": "Anonymized video-pair metadata with relative EO/IR filenames.",
+      "contentUrl": "data/metadata/video_metadata.example.csv",
+      "contentSize": "10201 B",
+      "encodingFormat": "text/csv",
+      "sha256": "f26a202179c4e0b9514b7aa4f7d37f279d7738e425a80d7877fe2ffd171d681a"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "video-metadata-json",
+      "name": "data/metadata/video_metadata.example.json",
+      "description": "JSON serialization of the anonymized video-pair metadata.",
+      "contentUrl": "data/metadata/video_metadata.example.json",
+      "contentSize": "41188 B",
+      "encodingFormat": "application/json",
+      "sha256": "b7394de38617bbb971869cac2a83f9a7c267e57e017fb7d4ea1bb727d344875e"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-5th-wheel",
+      "name": "data/annotations/5th.Wheel.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/5th.Wheel.json",
+      "contentSize": "14158 B",
+      "encodingFormat": "application/json",
+      "sha256": "4de91f8e847e889df4aa4a4a8bc0125ecf740cf37bfec50dfd32687034758af7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-air-canada-airliner",
+      "name": "data/annotations/Air_Canada_Airliner.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Air_Canada_Airliner.json",
+      "contentSize": "12261 B",
+      "encodingFormat": "application/json",
+      "sha256": "a28cccb0f0a3997276c2fce6ac23caca0738899bae93a2281e3ac36ca4389857"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-airplane",
+      "name": "data/annotations/Airplane.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Airplane.json",
+      "contentSize": "13370 B",
+      "encodingFormat": "application/json",
+      "sha256": "b7edbd104f53b7bdad3e07a5ff19bf6461d33c5cb2079f18a70e37030c80bccd"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-automobile",
+      "name": "data/annotations/Automobile.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Automobile.json",
+      "contentSize": "16652 B",
+      "encodingFormat": "application/json",
+      "sha256": "4b5541bf1e4331b8db569ad33975d907cff190a927e55cc06411feee25138c46"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-cargo-ship-horizon",
+      "name": "data/annotations/Cargo.Ship_Horizon.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Cargo.Ship_Horizon.json",
+      "contentSize": "16059 B",
+      "encodingFormat": "application/json",
+      "sha256": "8a641e0b99071062e3603fcdc96daa70d9dfca5539d31a6ddee3610c7ee5cd9b"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-cargo-truck-2",
+      "name": "data/annotations/Cargo.Truck.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Cargo.Truck.2.json",
+      "contentSize": "16151 B",
+      "encodingFormat": "application/json",
+      "sha256": "c68d1b4b0df0f1996d40c5fb4060446f254f6e2acf5f8a3b3788951ddb2a1dbe"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-cargo-truck",
+      "name": "data/annotations/Cargo.Truck.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Cargo.Truck.json",
+      "contentSize": "16303 B",
+      "encodingFormat": "application/json",
+      "sha256": "cd0b44b8b569bd1ca0eda83ee76fa1dbd5987a314492ae7984842a28aa3e7a2b"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-container-ship",
+      "name": "data/annotations/Container.Ship.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Container.Ship.json",
+      "contentSize": "15805 B",
+      "encodingFormat": "application/json",
+      "sha256": "4f8eb99ed9c304967314df31fc5958f38c5a0e26b4f8ef6fdff5c52812ab7413"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-covered-boat",
+      "name": "data/annotations/Covered.Boat.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Covered.Boat.json",
+      "contentSize": "15907 B",
+      "encodingFormat": "application/json",
+      "sha256": "6a411ca249dea983fdc4c5a553ce7ac5951ff339636a9405d0454bee49d1a801"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-docked-ferry-2",
+      "name": "data/annotations/Docked Ferry.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Docked Ferry.2.json",
+      "contentSize": "15040 B",
+      "encodingFormat": "application/json",
+      "sha256": "f5f61d3ecf3d50d7b1390719f6191f6fee1638110498527e387eda3e90573813"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-docked-ferry-1",
+      "name": "data/annotations/Docked_Ferry.1.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Docked_Ferry.1.json",
+      "contentSize": "15634 B",
+      "encodingFormat": "application/json",
+      "sha256": "f74495f99398b3bfc08896e07cba31f37f7bb6f0f9e88adbb643a93477e570a5"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-ferry-under-way-2",
+      "name": "data/annotations/Ferry Under Way.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Ferry Under Way.2.json",
+      "contentSize": "15511 B",
+      "encodingFormat": "application/json",
+      "sha256": "5150152a1422e00a03d865d282442894956b3c931a87740163e28fca0617cae8"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-ferry-2",
+      "name": "data/annotations/Ferry.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Ferry.2.json",
+      "contentSize": "15607 B",
+      "encodingFormat": "application/json",
+      "sha256": "9d9a141619bf609fc5710aa23c7f3764879b7a22a0dcf2ab0e8ccc0ef72e8fa9"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-ferry",
+      "name": "data/annotations/Ferry.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Ferry.json",
+      "contentSize": "16153 B",
+      "encodingFormat": "application/json",
+      "sha256": "20027bff4bc7250d46bfdadfda6a2faab12c5a5e540c0045e57ff9453a1d39e0"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-ferry-under-way",
+      "name": "data/annotations/Ferry_Under_Way.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Ferry_Under_Way.json",
+      "contentSize": "15923 B",
+      "encodingFormat": "application/json",
+      "sha256": "9c3d4d845cdd224e2766a1fb1c46bf0f0942c067aee368f7fdecc042543432cc"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-ferry-v1",
+      "name": "data/annotations/Ferry_v1.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Ferry_v1.json",
+      "contentSize": "15457 B",
+      "encodingFormat": "application/json",
+      "sha256": "647ac335473fbf86fdbb2ab1ee9a546ae377a81a06ff4c19b07921f3b3bb7643"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-fishing-boat-2",
+      "name": "data/annotations/Fishing.Boat.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Fishing.Boat.2.json",
+      "contentSize": "15460 B",
+      "encodingFormat": "application/json",
+      "sha256": "a0aab2fb8d297a8ebe8125078733c3af6a8f5f4fdf11356da9995f5e29296746"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-fishing-boat",
+      "name": "data/annotations/Fishing.Boat.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Fishing.Boat.json",
+      "contentSize": "15541 B",
+      "encodingFormat": "application/json",
+      "sha256": "310d5e17917e9d39199c9869ac978f4b1144f973b9c138c5c7230ae132a483fb"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-fishing-boat-3",
+      "name": "data/annotations/Fishing.boat-3.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Fishing.boat-3.json",
+      "contentSize": "15588 B",
+      "encodingFormat": "application/json",
+      "sha256": "4c3a6b874e53b98b9cbb176d58cf0dfb69c702de4275b80e48f892ec74cc60e2"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-flatbead",
+      "name": "data/annotations/Flatbead.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Flatbead.json",
+      "contentSize": "16395 B",
+      "encodingFormat": "application/json",
+      "sha256": "ea2e6c0ddde6f7d4c656cf3025e8fa228cbc1528d3fe9cfc64f69764fe92978f"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-freighter-3000",
+      "name": "data/annotations/Freighter_3000.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Freighter_3000.json",
+      "contentSize": "15921 B",
+      "encodingFormat": "application/json",
+      "sha256": "b0a1b424caa2d570c6605b5f0b2fe10665f03f0824cc186db7f497e06bd8bd7a"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-garbage-truck",
+      "name": "data/annotations/Garbage.Truck.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Garbage.Truck.json",
+      "contentSize": "16164 B",
+      "encodingFormat": "application/json",
+      "sha256": "0f9c512280b6d6aaca96b7f2adab53f3ab8716ffacf57ca99d839b725306cdba"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-helicopter",
+      "name": "data/annotations/Helicopter.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Helicopter.json",
+      "contentSize": "15886 B",
+      "encodingFormat": "application/json",
+      "sha256": "372f4f286e267436f09dee36dded8849087c951489884ba0e7574d585eb10f3f"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-houseboat",
+      "name": "data/annotations/Houseboat.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Houseboat.json",
+      "contentSize": "15501 B",
+      "encodingFormat": "application/json",
+      "sha256": "162681298831cb880bf081f66ca17841c924bc5f0c71ec2c48d6477d7b37e66c"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-large-airplane",
+      "name": "data/annotations/Large Airplane.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Large Airplane.json",
+      "contentSize": "16146 B",
+      "encodingFormat": "application/json",
+      "sha256": "5994e094292fb672412b953ed1a1c12816401942b793461986e9e042727bab20"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-logging-truck",
+      "name": "data/annotations/Logging.Truck.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Logging.Truck.json",
+      "contentSize": "16455 B",
+      "encodingFormat": "application/json",
+      "sha256": "0ba226698b3613d60f67339fa1963e9b6d2d5bf4c57f75e1e4b8048dca93d2d5"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-parked-car",
+      "name": "data/annotations/Parked.Car.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Parked.Car.json",
+      "contentSize": "15746 B",
+      "encodingFormat": "application/json",
+      "sha256": "9fe9f9bad680167164046b044fdba397860042b56fb0f791a560193f86abfbd9"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-passenger-bus",
+      "name": "data/annotations/Passenger.Bus.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Passenger.Bus.json",
+      "contentSize": "16476 B",
+      "encodingFormat": "application/json",
+      "sha256": "97076dd03b220a1e34cbce3fdf12f49b1283af514cf6a388f651c8b2a0d8cb17"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-power-boat",
+      "name": "data/annotations/Power.Boat.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Power.Boat.json",
+      "contentSize": "15318 B",
+      "encodingFormat": "application/json",
+      "sha256": "efb6ccf632fd4f6f97208d9eed089ed95ed93d5b16aad678a6a9d7059d8e3464"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-rcn-ships-1",
+      "name": "data/annotations/RCN.Ships.1.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/RCN.Ships.1.json",
+      "contentSize": "15378 B",
+      "encodingFormat": "application/json",
+      "sha256": "8d76eb7b8b3c08caea28483f07ece0d0f19c49aedddb1bfd5dca9394e6b54ead"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-rcn-ships-2",
+      "name": "data/annotations/RCN.Ships.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/RCN.Ships.2.json",
+      "contentSize": "15489 B",
+      "encodingFormat": "application/json",
+      "sha256": "76cb3370fd35d24b896f057a9af5e3881b2fea6e3b3e7beb3e6b57340a508e84"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-suv-w-trailer",
+      "name": "data/annotations/SUV.W.Trailer.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/SUV.W.Trailer.json",
+      "contentSize": "16549 B",
+      "encodingFormat": "application/json",
+      "sha256": "d6bcce3ae12310f131244f9ce7d2886f5f9e66de9264eccacdaef08218c4e3d0"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-sailboat-2",
+      "name": "data/annotations/Sailboat.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Sailboat.2.json",
+      "contentSize": "15467 B",
+      "encodingFormat": "application/json",
+      "sha256": "5ff2c7440f5adc3e4d6d6496f1bc0bba9dcf9348f760acbe8bdcc4604e1d93ad"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-sailboat-3",
+      "name": "data/annotations/Sailboat.3.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Sailboat.3.json",
+      "contentSize": "15381 B",
+      "encodingFormat": "application/json",
+      "sha256": "230565b2dce5d04a4bc3444d243cffee800bd5f461760aa0e16cc0904659554c"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-sailboat-4",
+      "name": "data/annotations/Sailboat.4.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Sailboat.4.json",
+      "contentSize": "15373 B",
+      "encodingFormat": "application/json",
+      "sha256": "e9476d9665c3e4614f6e66fbefcf9a76f9d4957ad296e0cef088dbb0da32e993"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-sailboat",
+      "name": "data/annotations/Sailboat.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Sailboat.json",
+      "contentSize": "15490 B",
+      "encodingFormat": "application/json",
+      "sha256": "b9667e8673044793fab3f00c5f53257a6b7d9448457c04deab38b02b74b19d80"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-salt-barg",
+      "name": "data/annotations/Salt.Barg.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Salt.Barg.json",
+      "contentSize": "15796 B",
+      "encodingFormat": "application/json",
+      "sha256": "f9820b743260e3d335f0860ce297e39aae6ca6fc61df991eec938f8365665056"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-sea-plane",
+      "name": "data/annotations/Sea.Plane.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Sea.Plane.json",
+      "contentSize": "16372 B",
+      "encodingFormat": "application/json",
+      "sha256": "5e37983d739e1e888d4cbd3fe1de4d604812db4e110bfc2c0254f78dae09c5d3"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-small-aircraft",
+      "name": "data/annotations/Small Aircraft.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Small Aircraft.json",
+      "contentSize": "16259 B",
+      "encodingFormat": "application/json",
+      "sha256": "5c393e8e9bbd6d851a54b01760b6b7e83fcb10ee7ab234fcf4d4c71951a2b665"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-small-airplane-2",
+      "name": "data/annotations/Small.Airplane.2.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Small.Airplane.2.json",
+      "contentSize": "16486 B",
+      "encodingFormat": "application/json",
+      "sha256": "d022842e3b910d41de87496691f60d9f28582be251f604c3682c44ca2ac02b6d"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-small-airplane",
+      "name": "data/annotations/Small.Airplane.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Small.Airplane.json",
+      "contentSize": "16122 B",
+      "encodingFormat": "application/json",
+      "sha256": "bebf4ee9232c76fa91583c9d5a30ac024545865a861a135b125a619020152b0e"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-tanker",
+      "name": "data/annotations/Tanker.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Tanker.json",
+      "contentSize": "15786 B",
+      "encodingFormat": "application/json",
+      "sha256": "c3803ce2e34dea2a20ead4bcb3eaa4e646804460f724923590ddf67e63852671"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-tanker-horizon",
+      "name": "data/annotations/Tanker_Horizon.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Tanker_Horizon.json",
+      "contentSize": "15492 B",
+      "encodingFormat": "application/json",
+      "sha256": "9ad3b138049bb7e054a017f8a8738e57f137c71d42a9038882e5ebb3325ea0f7"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-terasense-red-boat",
+      "name": "data/annotations/TeraSense.Red.Boat.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/TeraSense.Red.Boat.json",
+      "contentSize": "15859 B",
+      "encodingFormat": "application/json",
+      "sha256": "7616e9d4c5ec787f087b875b3f4e5eb3f55a075d922c67c6f42253be926022b6"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-terasense-truck",
+      "name": "data/annotations/TeraSense.Truck.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/TeraSense.Truck.json",
+      "contentSize": "16508 B",
+      "encodingFormat": "application/json",
+      "sha256": "59037460ce12ea0f558d158b92040d0147097e132d5948bf1e7839f77b7bfa72"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-tug-w-barges",
+      "name": "data/annotations/Tug.W.Barges.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Tug.W.Barges.json",
+      "contentSize": "15273 B",
+      "encodingFormat": "application/json",
+      "sha256": "8a9a27e242d5fc557f538403345d79061bcde9735306901082f4a3848bc219fa"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-utility-van",
+      "name": "data/annotations/Utility.Van.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Utility.Van.json",
+      "contentSize": "16935 B",
+      "encodingFormat": "application/json",
+      "sha256": "2cad4a0e11ef3be237b0bd432c08b01931fe3ec28c8b8c9d36a5c6a1b6b937a6"
+    },
+    {
+      "@type": "cr:FileObject",
+      "@id": "annotation-yachts",
+      "name": "data/annotations/Yachts.json",
+      "description": "Benchmark annotation file containing sample metadata and multiple-choice QA labels.",
+      "contentUrl": "data/annotations/Yachts.json",
+      "contentSize": "15879 B",
+      "encodingFormat": "application/json",
+      "sha256": "d3a55ee5ce24cd50274ed4f0d52ef8c4cb63486e254e81be202fe67d3e175cf2"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "video_pairs",
+      "name": "Video pair metadata",
+      "description": "One record per EO/IR video pair in the anonymized metadata. The paper statistics use the 48 annotated pairs and exclude the duplicated Parked.car pair from the 49 metadata rows.",
+      "key": [
+        {
+          "@id": "video_pairs/pair_key"
+        },
+        {
+          "@id": "video_pairs/pair_instance_index"
+        }
+      ],
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/pair_key",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "pair_key"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/pair_instance_index",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "pair_instance_index"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/theme_guess",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "theme_guess"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/pairing_method",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "pairing_method"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_filename",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_filename"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_filename",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_filename"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_duration_seconds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_duration_seconds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_duration_seconds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_duration_seconds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/duration_delta_seconds",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "duration_delta_seconds"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_fps",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_fps"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_fps",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_fps"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_frame_count",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_frame_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_frame_count",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_frame_count"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_resolution",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_resolution"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_resolution",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_resolution"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_path",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_path"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_path",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_path"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_file_size_bytes",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_file_size_bytes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_file_size_bytes",
+          "dataType": "sc:Integer",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_file_size_bytes"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_bitrate_mbps",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_bitrate_mbps"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_bitrate_mbps",
+          "dataType": "sc:Float",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_bitrate_mbps"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_duration_source",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_duration_source"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_duration_source",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_duration_source"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/eo_metadata_error",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "eo_metadata_error"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "video_pairs/ir_metadata_error",
+          "dataType": "sc:Text",
+          "source": {
+            "fileObject": {
+              "@id": "video-metadata-csv"
+            },
+            "extract": {
+              "column": "ir_metadata_error"
+            }
+          }
+        }
+      ],
+      "examples": [
+        {
+          "video_pairs/pair_key": "5th wheel",
+          "video_pairs/pair_instance_index": "1",
+          "video_pairs/theme_guess": "5th Wheel",
+          "video_pairs/pairing_method": "exact",
+          "video_pairs/eo_filename": "5th.Wheel_EO.ts",
+          "video_pairs/ir_filename": "5th.Wheel_IR.ts",
+          "video_pairs/eo_duration_seconds": "96.68",
+          "video_pairs/ir_duration_seconds": "97.447",
+          "video_pairs/duration_delta_seconds": "0.767",
+          "video_pairs/eo_fps": "59.94",
+          "video_pairs/ir_fps": "59.94",
+          "video_pairs/eo_frame_count": "5795",
+          "video_pairs/ir_frame_count": "5841",
+          "video_pairs/eo_resolution": "1280x720",
+          "video_pairs/ir_resolution": "1280x720",
+          "video_pairs/eo_path": "5th.Wheel_EO.ts",
+          "video_pairs/ir_path": "5th.Wheel_IR.ts",
+          "video_pairs/eo_file_size_bytes": "",
+          "video_pairs/ir_file_size_bytes": "",
+          "video_pairs/eo_bitrate_mbps": "8.93",
+          "video_pairs/ir_bitrate_mbps": "8.931",
+          "video_pairs/eo_duration_source": "header",
+          "video_pairs/ir_duration_source": "header",
+          "video_pairs/eo_metadata_error": "",
+          "video_pairs/ir_metadata_error": ""
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "annotation_samples",
+      "name": "Annotation samples",
+      "description": "One record per annotated EO/IR sample. Each annotation file contains scenario metadata and 12 multiple-choice questions with gold labels, grouping metadata, modality requirements, and internal evidence notes.",
+      "key": {
+        "@id": "annotation_samples/sample_id"
+      },
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/annotation_file",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "annotation-json-files"
+            },
+            "extract": {
+              "fileProperty": "filename"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/sample_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "annotation-json-files"
+            },
+            "extract": {
+              "jsonPath": "$.sample_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "annotation-json-files"
+            },
+            "extract": {
+              "jsonPath": "$.type"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/main_event",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "annotation-json-files"
+            },
+            "extract": {
+              "jsonPath": "$.main_event"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/event_description",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "annotation-json-files"
+            },
+            "extract": {
+              "jsonPath": "$.event_description"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/scenario_type",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "annotation-json-files"
+            },
+            "extract": {
+              "jsonPath": "$.scenario_type"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "annotation_samples/questions",
+          "description": "Nested multiple-choice QA labels for the sample.",
+          "dataType": [
+            "cr:RecordSet",
+            "cr:Label"
+          ],
+          "repeated": true,
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/uid",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].uid"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/group_id",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].group_id"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/group_family",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].group_family"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/group_focus",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].group_focus"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/group_step",
+              "dataType": "sc:Integer",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].group_step"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/capability_level",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].capability_level"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/question",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].question"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/options",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].options"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/answer",
+              "dataType": [
+                "sc:Text",
+                "cr:Label"
+              ],
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].answer"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/option_roles",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].option_roles"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/question_type",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].question_type"
+                }
+              },
+              "repeated": true
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/modality_requirement",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].modality_requirement"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/time_reference_eo",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].time_reference_eo"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/time_reference_ir",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].time_reference_ir"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "annotation_samples/questions/evidence_note",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "annotation-json-files"
+                },
+                "extract": {
+                  "jsonPath": "$.qa[*].evidence_note"
+                }
+              }
+            }
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "annotation_samples/sample_id": "5th.Wheel",
+          "annotation_samples/type": "airborne_roadway",
+          "annotation_samples/scenario_type": "EO+IR-required",
+          "annotation_samples/questions/count": 12
+        }
+      ]
+    }
+  ],
+  "rai:hasSyntheticData": false,
+  "rai:dataCollection": "The dataset consists of paired electro-optical and infrared videos with manually curated multiple-choice annotations for model evaluation. The paper artifact stores anonymized relative filenames and benchmark annotations; raw videos must be provided by the hosted dataset using the same relative layout.",
+  "rai:dataCollectionType": [
+    "Physical data collection",
+    "Secondary Data analysis",
+    "Manual Human Curator",
+    "Software Collection"
+  ],
+  "prov:wasDerivedFrom": [
+    {
+      "@id": "https://dataverse.harvard.edu/previewurl.xhtml?token=73dc5b15-a0ce-4c20-be84-f8fde196f69b#raw-eo-ir-video-files",
+      "@type": "sc:Dataset",
+      "name": "Hosted raw EO/IR video files",
+      "description": "Primary paired EO/IR video files hosted with the Dataverse dataset. No separate external source-dataset URI is asserted for this anonymous submission artifact."
+    }
+  ],
+  "prov:wasGeneratedBy": [
+    {
+      "@type": "prov:Activity",
+      "name": "EO/IR video collection and pairing",
+      "description": "Electro-optical and infrared video streams were organized as paired samples through filename metadata and relative EO/IR paths."
+    },
+    {
+      "@type": "prov:Activity",
+      "name": "Manual multiple-choice QA annotation",
+      "description": "Each annotated sample was curated into multiple-choice video QA items with modality requirements, capability metadata, gold answers, and internal evidence notes."
+    },
+    {
+      "@type": "prov:Activity",
+      "name": "Benchmark export and scoring metadata generation",
+      "description": "Repository scripts validate annotations, export model-safe requests without label leakage, score predictions, and regenerate Croissant metadata and checksums."
+    }
+  ],
+  "rai:dataCollectionRawData": "Raw data are paired .ts EO and IR videos named with *_EO.ts and *_IR.ts suffixes. Metadata records video duration, frame count, frame rate, resolution, bitrate, pairing method, and relative file paths.",
+  "rai:dataCollectionMissingData": "The 48 annotated samples have zero missing EO/IR video pairs according to the current statistics. The anonymized metadata has null file-size fields because machine-specific raw file sizes were not included in the paper artifact. The duplicated Parked.car video pair is excluded from the annotation-counting policy.",
+  "rai:dataPreprocessingProtocol": [
+    "EO and IR streams are paired through filename metadata and resolved under VIDEO_DATA_ROOT.",
+    "The official evaluation protocol uses full videos sampled uniformly at 1.0 fps, preserves aspect ratio, caps each frame at a 512x512 area budget, and disables audio.",
+    "Request export hides gold answers, option roles, evidence notes, rationales, event descriptions, and annotation time-reference metadata from model prompts."
+  ],
+  "rai:dataAnnotationProtocol": "Each annotated sample has 12 multiple-choice questions with A-D options, a gold answer, modality requirements, question types, capability level, group metadata, and internal evidence notes. Questions are designed to test EO-only, IR-only, and EO+IR reasoning while controlling for same-scene distractors and wording leakage.",
+  "rai:dataAnnotationAnalysis": [
+    "The repository provides schema validation for annotation files and group structure.",
+    "The artifact check validates JSON syntax, annotation schema, request export, and common leakage patterns.",
+    "The annotation policy recommends text-only/no-video baseline checks to detect wording shortcuts before video inference."
+  ],
+  "rai:dataReleaseMaintenancePlan": [
+    "This is a static submission snapshot, not a live dataset.",
+    "Future data or annotation changes should increment the dataset version and regenerate all Croissant files and checksums.",
+    "For double-blind review, creator and hosting fields are anonymized and must be updated for the camera-ready public release when applicable."
+  ],
+  "rai:personalSensitiveInformation": [
+    "No personal or sensitive human attributes are intentionally annotated or used as labels.",
+    "The videos focus on vehicles, vessels, aircraft, infrastructure, motion, and cross-modal visual evidence rather than identifying people.",
+    "Before public release, the hosted raw videos should be reviewed for incidental identifiers such as readable markings, plates, faces, or location-sensitive details."
+  ],
+  "rai:dataSocialImpact": "The benchmark supports transparent evaluation of multimodal video models in EO/IR settings, including whether models use thermal and visible-light evidence appropriately. Potential risks include dual-use surveillance or operational monitoring applications; the dataset is intended for research evaluation and should not be used for identifying people, tracking private individuals, or safety-critical operational decisions.",
+  "rai:dataBiases": [
+    "The benchmark is small and intentionally scenario-focused: 48 annotated samples and 576 questions.",
+    "Maritime vessels are overrepresented relative to ground vehicles and aircraft, and the sensing contexts are limited to maritime and airborne viewpoints.",
+    "Sensor platform, geography, weather, time-of-day, and capture-condition coverage may not represent the broader EO/IR video domain.",
+    "Multiple-choice answer distributions and distractor templates may introduce artifacts; text-only leakage checks are part of the recommended validation process."
+  ],
+  "rai:dataLimitations": [
+    "The dataset is for evaluation and benchmarking, not for training general-purpose perception or surveillance systems.",
+    "It does not claim demographic, geographic, sensor, or operational representativeness.",
+    "The anonymous paper artifact does not include raw videos; reviewers need the hosted raw data or private preview URL for full inspection.",
+    "Gold answers, evidence notes, and time references are labels/internal audit metadata and must not be exposed to evaluated models.",
+    "Reviewer access through the hosted dataset URL must remain enabled through review, and public access must be finalized by the camera-ready deadline if accepted."
+  ],
+  "rai:dataUseCases": [
+    "Evaluate multimodal video-language models on EO-only, IR-only, and EO+IR full-video multiple-choice reasoning.",
+    "Study cross-modal evidence use, temporal reasoning, thermal interpretation, target grounding, and distractor rejection.",
+    "Run controlled benchmark ablations across modality settings and model families.",
+    "Not recommended for model training, person identification, surveillance deployment, safety-critical decision-making, or claims about broad EO/IR domain coverage."
+  ],
+  "rai:annotationsPerItem": "Each annotated EO/IR sample has 12 multiple-choice QA items. The current dataset contains 48 annotated samples and 576 total QA items.",
+  "rai:annotatorDemographics": "Annotator demographic information is not collected in this anonymous artifact and should not be inferred from the annotations.",
+  "rai:machineAnnotationTools": [
+    "Repository scripts extract video metadata, validate annotation schema, export model-safe requests, and score predictions.",
+    "No machine-generated demographic labels or personal-attribute labels are provided."
+  ],
+  "rai:dataManipulationProtocol": "The benchmark does not require pixel-level manipulation of the raw videos. Evaluation-time preprocessing samples frames, resizes frames according to the documented policy, and packages model requests without label leakage. The metadata files anonymize machine-specific paths by using relative filenames.",
+  "rai:dataImputationProtocol": "No label imputation is used. Missing file sizes remain null in the anonymized metadata, and metadata extraction issues are represented by eo_metadata_error and ir_metadata_error fields when applicable."
+}

@@ -13,7 +13,7 @@ python3 run_eo_ir_benchmark.py \
   --config configs/paper_smoke.json \
   --steps prepare_dataset export_requests export_model_requests
 
-python3 run_gpt54_api.py \
+python3 runners/api/run_gpt54_api.py \
   --model-requests-dir eval_outputs/paper_smoke/model_requests \
   --predictions-dir eval_outputs/paper_smoke/predictions \
   --settings eo_only \

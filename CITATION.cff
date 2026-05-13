@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use this benchmark artifact, please cite the associated anonymous submission."
+title: "EO/IR Video Understanding Benchmark"
+authors:
+  - family-names: "Anonymous"
+    given-names: "Authors"
+date-released: "2026-05-03"
+version: "1.0.0-submission-draft"
+license: "Apache-2.0"

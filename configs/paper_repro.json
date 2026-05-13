@@ -1,6 +1,6 @@
 {
-  "annotations_dir": "../annotations",
-  "metadata_csv": "../metadata/video_metadata.example.csv",
+  "annotations_dir": "../data/annotations",
+  "metadata_csv": "../data/metadata/video_metadata.example.csv",
   "data_root": null,
   "settings": [
     "eo_only",
